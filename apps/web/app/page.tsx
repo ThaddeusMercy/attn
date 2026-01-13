@@ -1,102 +1,113 @@
-import Image, { type ImageProps } from "next/image";
-import { Button } from "@repo/ui/button";
-import styles from "./page.module.css";
+import Link from "next/link";
 
-type Props = Omit<ImageProps, "src"> & {
-  srcLight: string;
-  srcDark: string;
-};
+const services = [
+  { name: "AI video ads at scale", slug: "video-ads" },
+  { name: "Custom chatbots & AI assistants", slug: "chatbots" },
+  // { name: "Programmatic SEO content", slug: "seo-content" },
+  { name: "Voice cloning for brands", slug: "voice-cloning" },
+  { name: "AI spokesperson videos", slug: "ai-spokespersons" },
+  { name: "Music video production", slug: "music-videos" },
+  { name: "Training & enablement", slug: "training" },
+  // { name: "Social media content automation", slug: "social-media" },
+  { name: "Creative Partnerships", slug: "partnerships" },
+];
 
-const ThemeImage = (props: Props) => {
-  const { srcLight, srcDark, ...rest } = props;
+const team = [
+  "Creative Director",
+  "AI Engineer",
+  "Motion Designer",
+  "Prompt Engineer",
+  "Open Application",
+];
 
-  return (
-    <>
-      <Image {...rest} src={srcLight} className="imgLight" />
-      <Image {...rest} src={srcDark} className="imgDark" />
-    </>
-  );
-};
+const tools = [
+  { name: "OpenAI", logo: "https://svgl.app/library/openai.svg" },
+  { name: "Anthropic", logo: "https://cdn.simpleicons.org/anthropic/000" },
+  { name: "Google", logo: "https://cdn.simpleicons.org/google/000" },
+  { name: "Meta", logo: "https://cdn.simpleicons.org/meta/000" },
+  { name: "Runway", logo: "https://svgl.app/library/runway.svg" },
+  { name: "Replit", logo: "https://cdn.simpleicons.org/replit/000" },
+  { name: "n8n", logo: "https://svgl.app/library/n8n.svg" },
+  { name: "Replicate", logo: "https://cdn.simpleicons.org/replicate/000" },
+  { name: "Vercel", logo: "https://cdn.simpleicons.org/vercel/000" },
+];
 
 export default function Home() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <ThemeImage
-          className={styles.logo}
-          srcLight="turborepo-dark.svg"
-          srcDark="turborepo-light.svg"
-          alt="Turborepo logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>apps/web/app/page.tsx</code>
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className="min-h-screen bg-white font-mono text-sm">
+      <div className="max-w-2xl mx-auto px-6 py-8 md:py-12">
+        {/* Header */}
+        <header className="flex items-center justify-between mb-8">
+          <h1 className="text-lg font-medium text-black tracking-tight">Attention Factory</h1>
+          <div className="flex items-center gap-2 text-[#5B6EF7]">
+            {/* <span className="w-2 h-2 bg-emerald-500" /> */}
+            {/* <span className="text-xs tracking-wide">Mercy & Joshua</span> */}
+          </div>
+        </header>
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new/clone?demo-description=Learn+to+implement+a+monorepo+with+a+two+Next.js+sites+that+has+installed+three+local+packages.&demo-image=%2F%2Fimages.ctfassets.net%2Fe5382hct74si%2F4K8ZISWAzJ8X1504ca0zmC%2F0b21a1c6246add355e55816278ef54bc%2FBasic.png&demo-title=Monorepo+with+Turborepo&demo-url=https%3A%2F%2Fexamples-basic-web.vercel.sh%2F&from=templates&project-name=Monorepo+with+Turborepo&repository-name=monorepo-turborepo&repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fturborepo%2Ftree%2Fmain%2Fexamples%2Fbasic&root-directory=apps%2Fdocs&skippable-integrations=1&teamSlug=vercel&utm_source=create-turbo"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://turborepo.dev/docs?utm_source"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
-        <Button appName="web" className={styles.secondary}>
-          Open alert
-        </Button>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com/templates?search=turborepo&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://turborepo.dev?utm_source=create-turbo"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to turborepo.dev →
-        </a>
-      </footer>
+        {/* Hero */}
+        <section className="mb-12">
+          <h2 className="text-base font-medium text-black mb-2">
+            We make things with <span className="italic">AI</span>.
+          </h2>
+          <p className="text-gray-600 mb-6">
+            The Swiss Army knife for Modern Brands. We help you ship the best version of your vision.
+          </p>
+        </section>
+
+        {/* Services */}
+        <section id="services" className="mb-8 pt-8 border-t border-gray-100">
+          <h3 className="text-base font-medium text-black mb-4">Services</h3>
+          <ul className="space-y-3">
+            {services.map((service, i) => (
+              <li key={i}>
+                <Link
+                  href={`/services/${service.slug}`}
+                  className="group flex items-center gap-2 text-gray-700 hover:text-[#5B6EF7] transition-colors"
+                >
+                  <span>{service.name}</span>
+                  <span className="text-[#5B6EF7]">→</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        {/* Tools */}
+        <section className="mb-8 pt-8 border-t border-gray-100">
+          <h3 className="text-base font-medium text-black mb-4">Powered by</h3>
+          <div className="flex flex-wrap gap-6 items-center">
+            {tools.map((tool, i) => (
+              <img
+                key={i}
+                src={tool.logo}
+                alt={tool.name}
+                title={tool.name}
+                className="h-6 w-auto opacity-60 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"
+                loading="lazy"
+              />
+            ))}
+          </div>
+        </section>
+
+        {/* Social Links */}
+        <section className="pt-8 border-t border-gray-100 mb-12">
+          <div className="flex gap-6">
+            <a href="#" className="text-[#5B6EF7] hover:underline">
+              X (Twitter)
+            </a>
+            <a href="#" className="text-[#5B6EF7] hover:underline">
+              LinkedIn
+            </a>
+            <a href="#" className="text-[#5B6EF7] hover:underline">
+              Instagram
+            </a>
+            <a href="mailto:hello@attentionfactory.ai" className="text-[#5B6EF7] hover:underline">
+              Email
+            </a>
+          </div>
+        </section>
+      </div>
     </div>
   );
 }
