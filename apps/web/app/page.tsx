@@ -12,14 +12,6 @@ const services = [
   { name: "Creative Partnerships", slug: "partnerships" },
 ];
 
-const team = [
-  "Creative Director",
-  "AI Engineer",
-  "Motion Designer",
-  "Prompt Engineer",
-  "Open Application",
-];
-
 const tools = [
   { name: "OpenAI", logo: "https://svgl.app/library/openai.svg" },
   { name: "Anthropic", logo: "https://cdn.simpleicons.org/anthropic/000" },
@@ -102,7 +94,7 @@ export default function Home() {
             <a href="#" className="text-[#5B6EF7] hover:underline">
               Instagram
             </a>
-            <a href="mailto:hello@attentionfactory.ai" className="text-[#5B6EF7] hover:underline">
+            <a href="mailto:hello@attentionfactory.io" className="text-[#5B6EF7] hover:underline">
               Email
             </a>
           </div>

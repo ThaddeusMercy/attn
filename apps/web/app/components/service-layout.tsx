@@ -34,7 +34,7 @@ export function ServiceLayout({ title, subtitle, children }: ServiceLayoutProps)
           <h3 className="text-base font-medium text-black mb-3">Ready to get started?</h3>
           <p className="text-gray-600 mb-6">Let's talk about your project.</p>
           <a
-            href="mailto:hello@attentionfactory.ai"
+            href="mailto:hello@attentionfactory.io"
             className="inline-flex items-center gap-2 text-[#5B6EF7] hover:underline"
           >
             Get in touch <span>→</span>
@@ -50,7 +50,7 @@ export function ServiceLayout({ title, subtitle, children }: ServiceLayoutProps)
             <Link href="/#services" className="text-gray-500 hover:text-[#5B6EF7]">
               Services
             </Link>
-            <a href="mailto:hello@attentionfactory.ai" className="text-gray-500 hover:text-[#5B6EF7]">
+            <a href="mailto:hello@attentionfactory.io" className="text-gray-500 hover:text-[#5B6EF7]">
               Contact
             </a>
           </div>
