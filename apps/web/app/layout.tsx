@@ -12,8 +12,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Attention Factory | AI-powered content for brands",
-  description: "We build AI systems that generate images, videos, and copy at scale. Premium quality. Infinite output.",
+  title: "Attention Factory | Your AI Partner",
+  description: "We make things with AI. The Swiss Army knife for Modern Brands. We help you ship the best version of your vision.",
 };
 
 export default function RootLayout({
