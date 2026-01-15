@@ -1,4 +1,5 @@
 import { ServiceLayout } from "../../components/service-layout";
+import { serviceCarousels } from "../carousels";
 
 export const metadata = {
   title: "Custom Chatbots & AI Assistants | Attention Factory",
@@ -10,6 +11,7 @@ export default function ChatbotsPage() {
     <ServiceLayout
       title="Custom Chatbots & AI Assistants"
       subtitle="AI assistants trained on your brand, deployed anywhere."
+      carouselItems={serviceCarousels.chatbots}
     >
       {/* What we do */}
       <section className="mb-12">

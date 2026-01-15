@@ -1,4 +1,5 @@
 import { ServiceLayout } from "../../components/service-layout";
+import { serviceCarousels } from "../carousels";
 
 export const metadata = {
   title: "Programmatic SEO Content | Attention Factory",
@@ -10,6 +11,7 @@ export default function SEOContentPage() {
     <ServiceLayout
       title="Programmatic SEO Content"
       subtitle="Thousands of SEO-optimized pages, generated intelligently."
+      carouselItems={serviceCarousels["seo-content"]}
     >
       {/* What we do */}
       <section className="mb-12">

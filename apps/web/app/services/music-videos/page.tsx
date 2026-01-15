@@ -1,4 +1,5 @@
 import { ServiceLayout } from "../../components/service-layout";
+import { serviceCarousels } from "../carousels";
 
 export const metadata = {
   title: "Music Video Production | Attention Factory",
@@ -10,6 +11,7 @@ export default function MusicVideosPage() {
     <ServiceLayout
       title="Music Video Production"
       subtitle="AI-powered visuals for artists and labels."
+      carouselItems={serviceCarousels["music-videos"]}
     >
       {/* What we do */}
       <section className="mb-12">

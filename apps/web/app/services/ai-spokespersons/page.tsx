@@ -1,4 +1,5 @@
 import { ServiceLayout } from "../../components/service-layout";
+import { serviceCarousels } from "../carousels";
 
 export const metadata = {
   title: "AI Spokesperson Videos | Attention Factory",
@@ -10,6 +11,7 @@ export default function AISpokespersonsPage() {
     <ServiceLayout
       title="AI Spokesperson Videos"
       subtitle="Photorealistic AI presenters for your brand."
+      carouselItems={serviceCarousels["ai-spokespersons"]}
     >
       {/* What we do */}
       <section className="mb-12">

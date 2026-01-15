@@ -8,6 +8,7 @@ const services = [
   { name: "AI spokesperson videos", slug: "ai-spokespersons" },
   { name: "Music video production", slug: "music-videos" },
   { name: "Training & enablement", slug: "training" },
+  { name: "MVPs & prototypes", slug: "mvps-prototypes" },
   // { name: "Social media content automation", slug: "social-media" },
   { name: "Creative Partnerships", slug: "partnerships" },
 ];
@@ -97,6 +98,16 @@ export default function Home() {
             <a href="mailto:hello@attentionfactory.io" className="text-[#5B6EF7] hover:underline">
               Email
             </a>
+          </div>
+        </section>
+
+        <section className="footer-ticker text-[11px] uppercase tracking-[0.2em] text-gray-500">
+          <div className="footer-ticker__track">
+            {Array.from({ length: 12 }).map((_, index) => (
+              <span key={`ticker-${index}`} className="whitespace-nowrap">
+                Attention Factory * AI Systems * 
+              </span>
+            ))}
           </div>
         </section>
       </div>

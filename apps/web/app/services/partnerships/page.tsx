@@ -1,4 +1,5 @@
 import { ServiceLayout } from "../../components/service-layout";
+import { serviceCarousels } from "../carousels";
 
 export const metadata = {
   title: "Partnerships | Attention Factory",
@@ -10,6 +11,7 @@ export default function PartnershipsPage() {
     <ServiceLayout
       title="Partnerships"
       subtitle="We become your AI team."
+      carouselItems={serviceCarousels.partnerships}
     >
       {/* What we do */}
       <section className="mb-12">

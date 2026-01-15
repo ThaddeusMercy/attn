@@ -19,3 +19,106 @@ body {
   background: rgba(91, 110, 247, 0.2);
   color: black;
 }
+
+.service-carousel {
+  position: relative;
+  overflow: hidden;
+  /* -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); */
+  /* mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); */
+}
+
+.service-carousel__track {
+  display: flex;
+  gap: 1rem;
+  width: max-content;
+  animation: service-carousel-scroll 28s linear infinite;
+}
+
+.service-carousel:hover .service-carousel__track {
+  animation-play-state: paused;
+}
+
+.service-carousel__item {
+  position: relative;
+  overflow: hidden;
+  background: #f3f4f6;
+}
+
+.service-carousel__item.is-loading::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, rgba(243, 244, 246, 0.4), rgba(255, 255, 255, 0.7), rgba(243, 244, 246, 0.4));
+  animation: service-carousel-skeleton 1.2s ease-in-out infinite;
+}
+
+.service-carousel__image {
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.service-carousel__image.is-loaded {
+  opacity: 1;
+}
+
+@keyframes service-carousel-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes service-carousel-skeleton {
+  0% {
+    transform: translateX(-40%);
+  }
+  100% {
+    transform: translateX(40%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .service-carousel__track {
+    animation: none;
+  }
+  .service-carousel__item.is-loading::after {
+    animation: none;
+  }
+}
+
+.footer-ticker {
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid #f3f4f6;
+  padding: 1rem 0;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+}
+
+.footer-ticker__track {
+  display: flex;
+  gap: 2rem;
+  width: max-content;
+  animation: footer-ticker-scroll 50s linear infinite;
+}
+
+.footer-ticker:hover .footer-ticker__track {
+  animation-play-state: paused;
+}
+
+@keyframes footer-ticker-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .footer-ticker__track {
+    animation: none;
+  }
+}

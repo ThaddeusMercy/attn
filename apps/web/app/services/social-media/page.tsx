@@ -1,4 +1,5 @@
 import { ServiceLayout } from "../../components/service-layout";
+import { serviceCarousels } from "../carousels";
 
 export const metadata = {
   title: "Social Media Content Automation | Attention Factory",
@@ -10,6 +11,7 @@ export default function SocialMediaPage() {
     <ServiceLayout
       title="Social Media Content Automation"
       subtitle="Endless content, zero burnout."
+      carouselItems={serviceCarousels["social-media"]}
     >
       {/* What we do */}
       <section className="mb-12">

@@ -1,4 +1,5 @@
 import { ServiceLayout } from "../../components/service-layout";
+import { serviceCarousels } from "../carousels";
 
 export const metadata = {
   title: "Training & Enablement | Attention Factory",
@@ -10,6 +11,7 @@ export default function TrainingPage() {
     <ServiceLayout
       title="Training & Skill Transfer"
       subtitle="Gen AI training, Prompt Engineering, and Corporate Workshops."
+      carouselItems={serviceCarousels.training}
     >
       {/* What we do */}
       <section className="mb-12">

@@ -1,4 +1,5 @@
 import { ServiceLayout } from "../../components/service-layout";
+import { serviceCarousels } from "../carousels";
 
 export const metadata = {
   title: "Voice Cloning for Brands | Attention Factory",
@@ -10,6 +11,7 @@ export default function VoiceCloningPage() {
     <ServiceLayout
       title="Voice Cloning for Brands"
       subtitle="Your brand voice, infinitely scalable."
+      carouselItems={serviceCarousels["voice-cloning"]}
     >
       {/* What we do */}
       <section className="mb-12">
