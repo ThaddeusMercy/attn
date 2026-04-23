@@ -32,10 +32,9 @@ export default function Home() {
         {/* Header */}
         <header className="flex items-center justify-between mb-8">
           <h1 className="text-lg font-medium text-black tracking-tight">Attention Factory</h1>
-          <div className="flex items-center gap-2 text-[#5B6EF7]">
-            {/* <span className="w-2 h-2 bg-emerald-500" /> */}
-            {/* <span className="text-xs tracking-wide">Mercy & Joshua</span> */}
-          </div>
+          <Link href="/team" className="text-[#5B6EF7] hover:underline">
+            Team →
+          </Link>
         </header>
 
         {/* Hero */}
@@ -86,13 +85,28 @@ export default function Home() {
         {/* Social Links */}
         <section className="pt-8 border-t border-gray-100 mb-12">
           <div className="flex gap-6">
-            <a href="#" className="text-[#5B6EF7] hover:underline">
+            <a
+              href="https://x.com/attn_factory"
+              target="_blank"
+              rel="me noopener noreferrer"
+              className="text-[#5B6EF7] hover:underline"
+            >
               X (Twitter)
             </a>
-            <a href="#" className="text-[#5B6EF7] hover:underline">
+            <a
+              href="https://www.linkedin.com/company/attentionfactory"
+              target="_blank"
+              rel="me noopener noreferrer"
+              className="text-[#5B6EF7] hover:underline"
+            >
               LinkedIn
             </a>
-            <a href="#" className="text-[#5B6EF7] hover:underline">
+            <a
+              href="https://www.instagram.com/attention_factory"
+              target="_blank"
+              rel="me noopener noreferrer"
+              className="text-[#5B6EF7] hover:underline"
+            >
               Instagram
             </a>
             <a href="mailto:hello@attentionfactory.io" className="text-[#5B6EF7] hover:underline">
