@@ -1,130 +1,86 @@
-import Link from "next/link";
-
-const services = [
-  { name: "AI video ads at scale", slug: "video-ads" },
-  { name: "Custom chatbots & AI assistants", slug: "chatbots" },
-  // { name: "Programmatic SEO content", slug: "seo-content" },
-  { name: "Voice cloning for brands", slug: "voice-cloning" },
-  { name: "AI spokesperson videos", slug: "ai-spokespersons" },
-  { name: "Music video production", slug: "music-videos" },
-  { name: "Training & enablement", slug: "training" },
-  { name: "MVPs & prototypes", slug: "mvps-prototypes" },
-  // { name: "Social media content automation", slug: "social-media" },
-  { name: "Creative Partnerships", slug: "partnerships" },
-];
-
-const tools = [
-  { name: "OpenAI", logo: "https://svgl.app/library/openai.svg" },
-  { name: "Anthropic", logo: "https://cdn.simpleicons.org/anthropic/000" },
-  { name: "Google", logo: "https://cdn.simpleicons.org/google/000" },
-  { name: "Meta", logo: "https://cdn.simpleicons.org/meta/000" },
-  { name: "Runway", logo: "https://svgl.app/library/runway.svg" },
-  { name: "Replit", logo: "https://cdn.simpleicons.org/replit/000" },
-  { name: "n8n", logo: "https://svgl.app/library/n8n.svg" },
-  { name: "Replicate", logo: "https://cdn.simpleicons.org/replicate/000" },
-  { name: "Vercel", logo: "https://cdn.simpleicons.org/vercel/000" },
-];
-
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className="min-h-screen bg-white font-mono text-sm">
-      <div className="max-w-2xl mx-auto px-6 py-8 md:py-12">
-        {/* Header */}
-        <header className="flex items-center justify-between mb-8">
-          <h1 className="text-lg font-medium text-black tracking-tight">Attention Factory</h1>
-          <Link href="/team" className="text-[#5B6EF7] hover:underline">
-            Team →
-          </Link>
-        </header>
+    <main className="min-h-dvh bg-background text-foreground">
+      <div className="w-full max-w-[600px] px-5 py-8 text-[18px] font-medium leading-[1.55] tracking-[-0.7px] text-[#888888] sm:p-14 sm:text-[20px]">
+        <nav className="mb-4 flex flex-wrap gap-x-3 gap-y-1 text-[18px] font-medium sm:text-[20px]">
+          <a className="text-[#0099ff] underline underline-offset-2" href="/">
+            home
+          </a>
+          {/* <a className="text-[#0099ff] underline underline-offset-2" href="/services">
+              what we make
+            </a> */}
+          {/* <a className="text-[#0099ff] underline underline-offset-2" href="/contact">
+              work with us
+            </a> */}
+        </nav>
 
-        {/* Hero */}
-        <section className="mb-12">
-          <h2 className="text-base font-medium text-black mb-2">
-            We make things with <span className="italic">AI</span>.
-          </h2>
-          <p className="text-gray-600 mb-6">
-            The Swiss Army knife for Modern Brands. We help you ship the best version of your vision.
+        <h1 className="mb-4 text-[38px] font-bold leading-[1.05] tracking-[-0.04em] text-neutral-950 sm:text-[50px]">
+          attention factory.
+        </h1>
+
+        <p className="mb-4">
+          we help brands, founders, and teams turn fuzzy ideas into things people can
+          actually see, use, share, and remember.
+        </p>
+
+        <p className="mb-4">
+          sometimes that means ai videos, spokespeople, ads, chatbots, launch content,
+          prototypes, or full creative systems. mostly, it means making the internet
+          feel a little less boring.
+        </p>
+
+        <p className="mb-8">
+          built for people who would rather ship the thing than talk about shipping the
+          thing.
+        </p>
+
+        <div className="mb-8">
+          <p>signed,</p>
+          <div
+            aria-label="Attention Factory signature"
+            className="mt-2 h-[25px] w-32 bg-[#888888] sm:h-[31px] sm:w-40"
+            role="img"
+            style={{
+              WebkitMask: "url('/images/signature-attn.png') left center / contain no-repeat",
+              mask: "url('/images/signature-attn.png') left center / contain no-repeat",
+            }}
+          />
+        </div>
+
+        <section className="mt-10">
+          <p className="mb-5">
+            sometimes we write about experiments, launches, and weird little ideas we are
+            trying. if you want the occasional note from us, drop your email below.
+          </p>
+
+          <div className="space-y-3">
+            <input
+              className="h-14 w-full rounded-md bg-neutral-100 px-4 text-[16px] text-neutral-700 placeholder:text-[#888888] outline-none"
+              placeholder="you@email.com"
+              type="email"
+            />
+            <button
+              className="h-14 w-full rounded-md bg-black text-[16px] font-semibold text-white"
+              type="button"
+            >
+              leggo
+            </button>
+          </div>
+
+          <div className="mt-5 aspect-4/5 w-full bg-neutral-200" />
+
+          <p className="mt-5">
+            p.s. if you wanna contact us, ping{" "}
+            <a
+              className="text-sky-600 underline underline-offset-2"
+              href="mailto:hello@attentionfactory.io"
+            >
+              hello@attentionfactory.io
+            </a>
+            . we generally respond fastest to short emails with a clear ask.
           </p>
         </section>
-
-        {/* Services */}
-        <section id="services" className="mb-8 pt-8 border-t border-gray-100">
-          <h3 className="text-base font-medium text-black mb-4">Services</h3>
-          <ul className="space-y-3">
-            {services.map((service, i) => (
-              <li key={i}>
-                <Link
-                  href={`/services/${service.slug}`}
-                  className="group flex items-center gap-2 text-gray-700 hover:text-[#5B6EF7] transition-colors"
-                >
-                  <span>{service.name}</span>
-                  <span className="text-[#5B6EF7]">→</span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        {/* Tools */}
-        <section className="mb-8 pt-8 border-t border-gray-100">
-          <h3 className="text-base font-medium text-black mb-4">Powered by</h3>
-          <div className="flex flex-wrap gap-6 items-center">
-            {tools.map((tool, i) => (
-              <img
-                key={i}
-                src={tool.logo}
-                alt={tool.name}
-                title={tool.name}
-                className="h-6 w-auto opacity-60 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"
-                loading="lazy"
-              />
-            ))}
-          </div>
-        </section>
-
-        {/* Social Links */}
-        <section className="pt-8 border-t border-gray-100 mb-12">
-          <div className="flex gap-6">
-            <a
-              href="https://x.com/attn_factory"
-              target="_blank"
-              rel="me noopener noreferrer"
-              className="text-[#5B6EF7] hover:underline"
-            >
-              X (Twitter)
-            </a>
-            <a
-              href="https://www.linkedin.com/company/attentionfactory"
-              target="_blank"
-              rel="me noopener noreferrer"
-              className="text-[#5B6EF7] hover:underline"
-            >
-              LinkedIn
-            </a>
-            <a
-              href="https://www.instagram.com/attention_factory"
-              target="_blank"
-              rel="me noopener noreferrer"
-              className="text-[#5B6EF7] hover:underline"
-            >
-              Instagram
-            </a>
-            <a href="mailto:hello@attentionfactory.io" className="text-[#5B6EF7] hover:underline">
-              Email
-            </a>
-          </div>
-        </section>
-
-        <section className="footer-ticker text-[11px] uppercase tracking-[0.2em] text-gray-500">
-          <div className="footer-ticker__track">
-            {Array.from({ length: 12 }).map((_, index) => (
-              <span key={`ticker-${index}`} className="whitespace-nowrap">
-                Attention Factory * AI Systems * 
-              </span>
-            ))}
-          </div>
-        </section>
       </div>
-    </div>
+    </main>
   );
 }
