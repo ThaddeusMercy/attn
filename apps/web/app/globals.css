@@ -16,8 +16,13 @@ body {
 }
 
 ::selection {
-  background: rgba(91, 110, 247, 0.2);
-  color: black;
+  background: #0099ff;
+  color: #ffffff;
+}
+
+::-moz-selection {
+  background: #0099ff;
+  color: #ffffff;
 }
 
 .service-carousel {
