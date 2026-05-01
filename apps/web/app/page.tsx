@@ -1,8 +1,7 @@
 import Link from "next/link";
 
-import { MembershipModalButton } from "../components/membership-modal-button";
+import { EmailSignupForm } from "../components/email-signup-form";
 import { PhotoCarousel } from "../components/photo-carousel";
-import { Input } from "../components/ui/input";
 import { Button } from "../components/ui/button";
 
 const photos = [
@@ -68,9 +67,12 @@ export default function HomePage() {
       <div className="fixed bottom-0 w-full left-0 h-32 bg-linear-to-t from-[#fefefe] from-10% via-50% via-[#fefefe]/50 to-transparent pointer-events-none isolate" />
       <div className="w-full max-w-[600px] px-5 py-8 text-[18px] font-medium leading-[1.55] tracking-[-0.7px] text-[#888888] sm:p-14 sm:text-[20px]">
         <nav className="mb-4 flex flex-wrap gap-x-3 gap-y-1 text-[18px] font-medium sm:text-[20px]">
-          {/* <Link className="text-[#0099ff] underline underline-offset-2" href="/">
+          <Link
+            className="text-[#0099ff] underline underline-offset-2"
+            href="/"
+          >
             home
-          </Link> */}
+          </Link>
           {/* <a className="text-[#0099ff] underline underline-offset-2" href="/team">
               team
             </a> */}
@@ -96,9 +98,11 @@ export default function HomePage() {
           feel a little less boring.
         </p> */}
 
-        {/* <p className="mb-8">
+        <p className="mb-8">
           for people who would rather leverage AI than talk about leveraging AI.
-        </p> */}
+        </p>
+
+        <p className="mb-4">for leaders, builders & creators</p>
 
         {/* <div className="mb-8">
           <div
@@ -113,18 +117,12 @@ export default function HomePage() {
         </div> */}
 
         <section className="mt-10">
-          {/* <p className="mb-5">remind me when it's live.</p> */}
+          {/* <p className="mb-5">
+            we can send you a reminder when it&apos;s live. drop your email
+            below.
+          </p> */}
 
-          {/* <div className="flex flex-col gap-y-2">
-            <Input
-              className="h-14 w-full rounded-md bg-neutral-100 px-4 text-[16px] text-neutral-700 placeholder:text-[#888888] outline-none"
-              placeholder="you@email.com"
-              type="email"
-            />
-            <Button className="h-14 w-full cursor-pointer rounded-md bg-black text-[16px] font-semibold text-white">
-              Remind me
-            </Button>
-          </div> */}
+          <EmailSignupForm />
 
           <PhotoCarousel photos={photos} />
 

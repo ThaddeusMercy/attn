@@ -14,13 +14,13 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: "Attention Factory | Your AI Partner",
-  description: "We make things with AI. The Swiss Army knife for Modern Brands. We help you ship the best version of your vision.",
+  description: "For people who would rather leverage AI than talk about leveraging AI.",
   authors: [{ name: "Mercy Thaddeus", url: "https://mercythaddeus.xyz" }, { name: "Joshua Omobola", url: "https://koha.wtf" }],
   creator: "Joshua Omobola",
   publisher: "Joshua Omobola",
   openGraph: {
     title: "Attention Factory | Your AI Partner",
-    description: "We make things with AI. The Swiss Army knife for Modern Brands. We help you ship the best version of your vision.",
+    description: "For people who would rather leverage AI than talk about leveraging AI.",
     url: "https://attentionfactory.io",
     siteName: "Attention Factory",
   },
