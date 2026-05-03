@@ -2,7 +2,6 @@ import Link from "next/link";
 
 import { EmailSignupForm } from "../components/email-signup-form";
 import { PhotoCarousel } from "../components/photo-carousel";
-import { Button } from "../components/ui/button";
 
 const photos = [
   {

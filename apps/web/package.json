@@ -11,6 +11,7 @@
     "check-types": "next typegen && tsc --noEmit"
   },
   "dependencies": {
+    "@paper-design/shaders-react": "^0.0.76",
     "@radix-ui/react-dialog": "^1.1.15",
     "@repo/ui": "workspace:*",
     "motion": "^12.26.2",
