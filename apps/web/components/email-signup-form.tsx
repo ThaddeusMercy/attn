@@ -169,7 +169,7 @@ export function EmailSignupForm() {
         title="signup submission"
       />
     </form> */}
-    <a href="https://dub.sh/attn-fast">
+    <a href="https://dub.sh/attn-bravo">
       <Button className="h-14 w-full cursor-pointer rounded-md bg-black text-[16px] font-semibold text-white disabled:cursor-not-allowed disabled:opacity-60">
         join the accelerator 
         <span className="inline-block size-4 ml-2 text-[#fff]">
