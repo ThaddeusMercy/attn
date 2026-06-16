@@ -3,21 +3,24 @@
 import { useEffect, useRef, useState } from "react";
 
 // highlight index === order the blue marker fills in as you scroll.
-// null = plain connective text.
-const SEGMENTS: { text: string; hl: number | null }[] = [
-  { text: "build ", hl: null },
-  { text: "ai skills", hl: 0 },
-  { text: " that ", hl: null },
-  { text: "pay you", hl: 1 },
-  { text: ", scale your ", hl: null },
-  { text: "business", hl: 2 },
-  { text: ", land you ", hl: null },
-  { text: "clients and jobs", hl: 3 },
-  { text: ", get you ", hl: null },
-  { text: "promoted", hl: 4 },
-  { text: ", and run your ", hl: null },
-  { text: "life", hl: 5 },
-  { text: ".", hl: null },
+// hl null = plain text. off = resting color (black for the first clause, grey after).
+const BLACK = "#0a0a0a";
+const GREY = "#888888";
+const SEGMENTS: { text: string; hl: number | null; off: string }[] = [
+  { text: "build ", hl: null, off: BLACK },
+  { text: "ai skills", hl: 0, off: BLACK },
+  { text: " that ", hl: null, off: BLACK },
+  { text: "pay you", hl: 1, off: BLACK },
+  { text: ",", hl: null, off: BLACK },
+  { text: " scale your ", hl: null, off: GREY },
+  { text: "business", hl: 2, off: GREY },
+  { text: ", land you ", hl: null, off: GREY },
+  { text: "clients and jobs", hl: 3, off: GREY },
+  { text: ", get you ", hl: null, off: GREY },
+  { text: "promoted", hl: 4, off: GREY },
+  { text: ", and run your ", hl: null, off: GREY },
+  { text: "life", hl: 5, off: GREY },
+  { text: ".", hl: null, off: GREY },
 ];
 
 const TOTAL = 6;
@@ -73,7 +76,11 @@ export function ScrollHero({ checkoutUrl }: { checkoutUrl: string }) {
           <h1 className="mb-5 text-[40px] font-bold leading-[1.12] tracking-[-0.045em] text-neutral-950 sm:text-[60px]">
             {SEGMENTS.map((seg, i) => {
               if (seg.hl === null) {
-                return <span key={i}>{seg.text}</span>;
+                return (
+                  <span key={i} style={{ color: seg.off }}>
+                    {seg.text}
+                  </span>
+                );
               }
               const on = seg.hl < active;
               return (
@@ -89,7 +96,7 @@ export function ScrollHero({ checkoutUrl }: { checkoutUrl: string }) {
                     boxDecorationBreak: "clone",
                     borderRadius: "0.12em",
                     padding: "0 0.06em",
-                    color: on ? "#ffffff" : "#0a0a0a",
+                    color: on ? "#ffffff" : seg.off,
                   }}
                 >
                   {seg.text}
