@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ScrollHero } from "./scroll-hero";
 
 export const metadata: Metadata = {
   title: "the launch, ai accelerator bootcamp",
@@ -17,11 +18,11 @@ const inside = [
 ];
 
 const proofVideos = [
+  { name: "maria", src: "/proof/maria.mp4", poster: "/proof/maria.jpg" },
+  { name: "henry", src: "/proof/henry.mp4", poster: "/proof/henry.jpg" },
   { name: "amarachi", src: "/proof/amarachi.mp4", poster: "/proof/amarachi.jpg" },
   { name: "sonia", src: "/proof/sonia.mp4", poster: "/proof/sonia.jpg" },
-  { name: "ogo", src: "/proof/ogo.mp4", poster: "/proof/ogo.jpg" },
-  { name: "henry", src: "/proof/henry.mp4", poster: "/proof/henry.jpg" },
-  { name: "maria", src: "/proof/maria.mp4", poster: "/proof/maria.jpg" },
+  { name: "ogochukwu", src: "/proof/ogo.mp4", poster: "/proof/ogo.jpg" },
 ];
 
 const faq = [
@@ -43,25 +44,25 @@ const faq = [
   },
   {
     q: "how do i pay?",
-    a: "paystack, selar, or card. naira or dollars. installments available, ₦80,000 × 2 on the spark plan.",
+    a: "checkout is handled securely through nestuge. naira or dollars, card or transfer. installments available, ₦80,000 × 2 on the spark plan.",
   },
 ];
 
 export default function LaunchPage() {
   return (
     <main className="min-h-dvh bg-[#fefefe] text-[#888] font-mono">
-      {/* today's win banner */}
+      {/* enrollment banner */}
       <div className="border-b border-neutral-200 bg-neutral-950 text-white">
         <div className="mx-auto flex w-full max-w-[900px] flex-wrap items-center justify-center gap-x-3 gap-y-1 px-5 py-2.5 text-center text-[12px] sm:px-14">
           <span className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.16em] text-[#0099ff]">
             <span className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-[#0099ff]" />
-            today
+            enrollment open
           </span>
           <span className="text-white">
-            a fellow just landed a <span className="font-semibold">$6,000 website job</span>.
+            bravo&apos;26 starts <span className="font-semibold">july 1</span>.
           </span>
           <span className="text-neutral-400">
-            she finished the bootcamp last week.
+            doors close once the cohort fills.
           </span>
         </div>
       </div>
@@ -73,68 +74,51 @@ export default function LaunchPage() {
         </div>
       </header>
 
-      {/* hero */}
-      <section className="mx-auto w-full max-w-[900px] px-5 sm:px-14">
-        <div className="mb-3 inline-flex flex-wrap items-center gap-2 rounded-sm border border-neutral-200 bg-white px-2 py-[2px] text-[11px] uppercase tracking-[0.16em] text-[#888]">
-          <span>ai accelerator bootcamp</span>
-          <span className="text-neutral-300">&middot;</span>
-          <span className="text-[#0099ff]">starts july 1</span>
+      {/* hero — pinned scroll-reveal headline */}
+      <ScrollHero checkoutUrl={CHECKOUT_URL} />
+
+      {/* hero banner image */}
+      <section className="mx-auto w-full max-w-[900px] px-5 pt-12 sm:px-14">
+        <div className="overflow-hidden rounded-sm border border-neutral-200 bg-white">
+          <img
+            src="/proof/earning-in-ai.jpg"
+            alt="the guide to earn from ai opportunities — mercy + joshua"
+            className="h-auto w-full object-cover"
+          />
         </div>
-
-        <h1 className="mb-5 text-[40px] font-bold leading-[1.02] tracking-[-0.045em] text-neutral-950 sm:text-[60px]">
-          build ai skills that pay you,
-          <span className="text-[#888]"> build your business, land your clients, and run your life.</span>
-        </h1>
-
-        <p className="mb-10 max-w-[720px] text-[17px] leading-[1.55] tracking-[-0.3px] text-neutral-700 sm:text-[19px]">
-          in 7 days. whether that&apos;s a new role, a freelance income, an agency you&apos;re launching, or an ai line for the business you already run.
-        </p>
       </section>
 
-      {/* real wins — moved up here, right under hero */}
-      <section className="mx-auto w-full max-w-[900px] px-5 pt-2 sm:px-14">
-        <div className="mb-3 flex items-baseline gap-3 text-[12px] uppercase tracking-[0.18em] text-[#888]">
-          <span className="text-[#0099ff]">real wins</span>
-          <span>fellows finishing with clients, not just certificates</span>
+      {/* the framing — what this is */}
+      <section className="mx-auto w-full max-w-[900px] px-5 pt-20 sm:px-14">
+        <div className="mb-4 flex items-baseline gap-3 text-[12px] uppercase tracking-[0.18em] text-[#888]">
+          <span className="text-[#0099ff]">what this is</span>
         </div>
-        <div className="grid gap-4 sm:grid-cols-3">
-          <div className="rounded-sm border border-neutral-200 bg-white p-5">
-            <div className="mb-2 text-[32px] font-bold tracking-[-0.02em] text-neutral-950">
-              $6,000
-            </div>
-            <div className="mb-2 text-[12px] uppercase tracking-[0.14em] text-[#0099ff]">
-              website job
-            </div>
-            <p className="text-[14px] leading-[1.55]">
-              a fellow landed this today, days after finishing the bootcamp. her first big contract.
-            </p>
-          </div>
-          <div className="rounded-sm border border-neutral-200 bg-white p-5">
-            <div className="mb-2 text-[32px] font-bold tracking-[-0.02em] text-neutral-950">
-              $750
-            </div>
-            <div className="mb-2 text-[12px] uppercase tracking-[0.14em] text-[#0099ff]">
-              one hour
-            </div>
-            <p className="text-[14px] leading-[1.55]">
-              another fellow turned a broken dentist site into a $750 paycheck. same day he saw the lesson.
-            </p>
-          </div>
-          <div className="rounded-sm border border-neutral-200 bg-white p-5">
-            <div className="mb-2 text-[32px] font-bold tracking-[-0.02em] text-neutral-950">
-              7 days
-            </div>
-            <div className="mb-2 text-[12px] uppercase tracking-[0.14em] text-[#0099ff]">
-              own store live
-            </div>
-            <p className="text-[14px] leading-[1.55]">
-              a fellow rebuilt his 10-year furniture brand, wired stripe, went live in 7 days. customers buying directly.
-            </p>
-          </div>
+        <h2 className="mb-6 text-[28px] font-semibold leading-[1.15] tracking-[-0.025em] text-neutral-950 sm:text-[36px]">
+          stop treating ai like a chatbot.
+          <span className="text-[#888]"> or something to postpone.</span>
+        </h2>
+        <div className="max-w-[760px] space-y-4 text-[16px] leading-[1.6] sm:text-[17px]">
+          <p>
+            in 7 days, we walk you through ai content brands pay for, real ai agents, and automations that run your work, your business, and your life.
+          </p>
+          <p>
+            we use this every day at attention factory, and we build it for brands and companies across the world. we&apos;ll show you how, then teach you to build your own. we&apos;ll also show you how we stay ahead and updated with ai.
+          </p>
         </div>
-        <p className="mt-4 text-[14px]">
-          you can hear it from them yourself. press play below.
-        </p>
+
+        <div className="mt-8 flex flex-wrap items-center gap-4">
+          <a
+            href={CHECKOUT_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-sm bg-[#0099ff] px-6 py-4 text-[15px] font-medium text-white transition hover:bg-[#0088e6]"
+          >
+            join bravo&apos;26 <span aria-hidden>&rarr;</span>
+          </a>
+          <p className="text-[13px] text-[#888]">
+            seats are limited &middot; cohort starts july 1
+          </p>
+        </div>
       </section>
 
       {/* feature pills — commented out for now: visually too heavy. revisit. */}
@@ -162,7 +146,11 @@ export default function LaunchPage() {
       */}
 
       {/* webinar embed */}
-      <section className="mx-auto w-full max-w-[900px] px-5 pt-12 sm:px-14">
+      <section className="mx-auto w-full max-w-[900px] px-5 pt-16 sm:px-14">
+        <p className="mb-5 text-[14px] leading-[1.55]">
+the full masterclass, free. the exact playbook we use to make ai videos brands pay for, build websites without code, and automate the busywork.
+        </p>
+
         <div className="mb-8 overflow-hidden rounded-sm border border-neutral-200 bg-black shadow-sm">
           <div className="aspect-video w-full">
             <iframe
@@ -174,34 +162,11 @@ export default function LaunchPage() {
             />
           </div>
           <div className="flex flex-wrap items-center justify-between gap-3 border-t border-neutral-200 bg-white px-4 py-3 text-[12px] uppercase tracking-[0.14em] text-[#888]">
-            <span>the masterclass &middot; 90 min &middot; mercy + joshua</span>
+            <span>the masterclass &middot; 1h 54m &middot; mercy + joshua</span>
             <span className="text-[#0099ff]">free to watch</span>
           </div>
         </div>
 
-        {/* primary CTA */}
-        <div className="rounded-sm border border-neutral-200 bg-white p-6 sm:p-8">
-          <div className="mb-2 text-[12px] uppercase tracking-[0.18em] text-[#888]">
-            ready to enroll?
-          </div>
-          <h2 className="mb-3 text-[24px] font-semibold tracking-[-0.025em] text-neutral-950 sm:text-[28px]">
-            lock your seat. cohort starts july 1.
-          </h2>
-          <p className="mb-5 text-[15px] leading-[1.55]">
-            ₦150,000 one-time. or pay in two parts (₦80,000 × 2) on the spark plan.
-          </p>
-          <a
-            href={CHECKOUT_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex w-full items-center justify-center gap-2 rounded-sm bg-[#0099ff] px-6 py-4 text-[15px] font-medium text-white transition hover:bg-[#0088e6] sm:w-auto sm:px-8"
-          >
-            enroll now <span aria-hidden>&rarr;</span>
-          </a>
-          <p className="mt-3 text-[12px]">
-            secure checkout. paystack. selar. card. full refund if you don&apos;t ship.
-          </p>
-        </div>
       </section>
 
       {/* who's in this room */}
@@ -213,7 +178,7 @@ export default function LaunchPage() {
           we&apos;re not training &ldquo;ai users.&rdquo; we&apos;re training the people building the next wave.
         </h2>
         <p className="mb-8 max-w-[680px] text-[16px] leading-[1.55]">
-          if you&apos;re here, you&apos;re probably one of these. and the page you&apos;re on is built to put you on the next rung.
+          find yourself in one of these? that&apos;s exactly who this is built for.
         </p>
         <div className="grid gap-3 sm:grid-cols-2">
           {[
@@ -258,7 +223,128 @@ export default function LaunchPage() {
         </div>
       </section>
 
-      {/* is / isn't for you */}
+      {/* proof — fellow videos, grid (3 over 2) */}
+      <section className="mx-auto w-full max-w-[1100px] px-5 pt-24 sm:px-14">
+        <div className="mb-3 flex items-baseline gap-3 text-[12px] uppercase tracking-[0.18em] text-[#888]">
+          <span className="text-[#0099ff]">receipts</span>
+          <span>fellows in their own words</span>
+        </div>
+        <h2 className="mb-2 text-[28px] font-semibold leading-[1.15] tracking-[-0.025em] text-neutral-950 sm:text-[36px]">
+          people who showed up. real results.
+        </h2>
+        <p className="mb-8 text-[14px]">
+          unedited. in their own words. press play on any of them.
+        </p>
+        <div className="flex flex-wrap justify-center gap-4">
+          {proofVideos.map((v) => (
+            <figure
+              key={v.name}
+              className="w-[calc(50%-0.5rem)] overflow-hidden rounded-sm border border-neutral-200 bg-black sm:w-[calc(33.333%-0.75rem)]"
+            >
+              <video
+                controls
+                preload="metadata"
+                poster={v.poster}
+                className="aspect-video w-full bg-black object-contain"
+                playsInline
+              >
+                <source src={v.src} type="video/mp4" />
+              </video>
+              <figcaption className="bg-white px-4 py-3 text-[12px] uppercase tracking-[0.14em] text-[#888]">
+                {v.name}
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
+
+      {/* CTA 1 — no price yet */}
+      <section className="mx-auto w-full max-w-[700px] px-5 pt-16 sm:px-14">
+        <div className="rounded-sm border border-neutral-200 bg-white p-6 sm:p-8">
+          <div className="mb-2 text-[12px] uppercase tracking-[0.18em] text-[#888]">
+            ready to join them?
+          </div>
+          <h2 className="mb-5 text-[24px] font-semibold tracking-[-0.025em] text-neutral-950 sm:text-[28px]">
+            lock your seat. cohort starts july 1.
+          </h2>
+          <a
+            href={CHECKOUT_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-sm bg-[#0099ff] px-6 py-4 text-[15px] font-medium text-white transition hover:bg-[#0088e6] sm:w-auto sm:px-8"
+          >
+            enroll now <span aria-hidden>&rarr;</span>
+          </a>
+          <p className="mt-3 text-[12px]">
+            secure checkout via nestuge. full refund if you don&apos;t ship.
+          </p>
+        </div>
+      </section>
+
+      {/* what's inside — the bootcamp */}
+      <section className="mx-auto w-full max-w-[900px] px-5 pt-24 sm:px-14">
+        <div className="mb-3 flex items-baseline gap-3 text-[12px] uppercase tracking-[0.18em] text-[#888]">
+          <span className="text-[#0099ff]">what&apos;s inside</span>
+          <span>the bootcamp</span>
+        </div>
+        <h2 className="mb-8 text-[28px] font-semibold leading-[1.15] tracking-[-0.025em] text-neutral-950 sm:text-[34px]">
+          one week. everything below.
+        </h2>
+        <ul className="divide-y divide-neutral-200 border-y border-neutral-200">
+          {inside.map((row) => (
+            <li key={row.title} className="grid gap-2 py-5 sm:grid-cols-[200px_1fr] sm:gap-8">
+              <div className="text-[15px] font-semibold text-neutral-950">
+                {row.title}
+              </div>
+              <p className="text-[15px] leading-[1.55]">{row.body}</p>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      {/* founders — who's teaching */}
+      <section className="mx-auto w-full max-w-[900px] px-5 pt-24 sm:px-14">
+        <div className="mb-3 flex items-baseline gap-3 text-[12px] uppercase tracking-[0.18em] text-[#888]">
+          <span className="text-[#0099ff]">who&apos;s teaching</span>
+        </div>
+        <h2 className="mb-6 text-[28px] font-semibold leading-[1.15] tracking-[-0.025em] text-neutral-950 sm:text-[34px]">
+          mercy + joshua. building right alongside you.
+        </h2>
+        <div className="grid gap-6 sm:grid-cols-2">
+          <div className="rounded-sm border border-neutral-200 bg-white p-6">
+            <div className="mb-5 aspect-[4/5] w-full overflow-hidden rounded-sm bg-neutral-100">
+              <img
+                src="/team/mercy.jpg"
+                alt="mercy thaddeus"
+                className="h-full w-full object-contain"
+              />
+            </div>
+            <div className="mb-3 text-[18px] font-semibold text-neutral-950">
+              mercy thaddeus
+            </div>
+            <p className="text-[14px] leading-[1.6]">
+              builds with ai every day. teaches it to a community of 160k+ across the us, uk, canada, australia and beyond. runs the curriculum and live sessions.
+            </p>
+          </div>
+          <div className="rounded-sm border border-neutral-200 bg-white p-6">
+            <div className="mb-5 aspect-[4/5] w-full overflow-hidden rounded-sm bg-neutral-100">
+              <img
+                src="/team/joshua.jpg"
+                alt="joshua omobola"
+                className="h-full w-full object-contain"
+              />
+            </div>
+            <div className="mb-3 text-[18px] font-semibold text-neutral-950">
+              joshua omobola
+            </div>
+            <p className="text-[14px] leading-[1.6]">
+              ships products for a living. runs the build days. nobody leaves the bootcamp without something they can demo.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* honesty check — is / isn't for you */}
       <section className="mx-auto w-full max-w-[900px] px-5 pt-24 sm:px-14">
         <div className="mb-3 flex items-baseline gap-3 text-[12px] uppercase tracking-[0.18em] text-[#888]">
           <span className="text-[#0099ff]">honesty check</span>
@@ -339,57 +425,56 @@ export default function LaunchPage() {
         </p>
       </section>
 
-      {/* what's inside — condensed */}
-      <section className="mx-auto w-full max-w-[900px] px-5 pt-24 sm:px-14">
+      {/* price CTA — nestuge-style breakdown */}
+      <section className="mx-auto w-full max-w-[700px] px-5 pt-24 sm:px-14">
         <div className="mb-3 flex items-baseline gap-3 text-[12px] uppercase tracking-[0.18em] text-[#888]">
-          <span className="text-[#0099ff]">what&apos;s inside</span>
-          <span>the bootcamp</span>
+          <span className="text-[#0099ff]">ready to join?</span>
         </div>
-        <h2 className="mb-8 text-[28px] font-semibold leading-[1.15] tracking-[-0.025em] text-neutral-950 sm:text-[34px]">
-          one week. everything below.
+        <h2 className="mb-6 text-[28px] font-semibold leading-[1.15] tracking-[-0.025em] text-neutral-950 sm:text-[34px]">
+          one bootcamp. two ways to pay.
         </h2>
-        <ul className="divide-y divide-neutral-200 border-y border-neutral-200">
-          {inside.map((row) => (
-            <li key={row.title} className="grid gap-2 py-5 sm:grid-cols-[200px_1fr] sm:gap-8">
-              <div className="text-[15px] font-semibold text-neutral-950">
-                {row.title}
-              </div>
-              <p className="text-[15px] leading-[1.55]">{row.body}</p>
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      {/* proof */}
-      <section className="mx-auto w-full max-w-[900px] px-5 pt-24 sm:px-14">
-        <div className="mb-3 flex items-baseline gap-3 text-[12px] uppercase tracking-[0.18em] text-[#888]">
-          <span className="text-[#0099ff]">receipts</span>
-          <span>fellows in their own words</span>
-        </div>
-        <h2 className="mb-8 text-[28px] font-semibold leading-[1.15] tracking-[-0.025em] text-neutral-950 sm:text-[34px]">
-          people who showed up. real results.
-        </h2>
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
-          {proofVideos.map((v) => (
-            <figure
-              key={v.name}
-              className="overflow-hidden rounded-sm border border-neutral-200 bg-black"
+        <div className="grid gap-4 sm:grid-cols-2">
+          <div className="flex flex-col rounded-sm border border-neutral-200 bg-white p-6">
+            <div className="mb-1 text-[12px] uppercase tracking-[0.16em] text-[#888]">
+              pay in full
+            </div>
+            <div className="mb-1 text-[36px] font-bold tracking-[-0.03em] text-neutral-950">
+              ₦150,000
+            </div>
+            <p className="mb-6 text-[13px]">one payment, done. (~$149)</p>
+            <a
+              href={CHECKOUT_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-auto inline-flex items-center justify-center gap-2 rounded-sm bg-[#0099ff] px-6 py-3 text-[14px] font-medium text-white transition hover:bg-[#0088e6]"
             >
-              <video
-                controls
-                preload="metadata"
-                poster={v.poster}
-                className="aspect-square w-full object-cover"
-                playsInline
-              >
-                <source src={v.src} type="video/mp4" />
-              </video>
-              <figcaption className="bg-white px-3 py-2 text-[11px] uppercase tracking-[0.14em] text-[#888]">
-                {v.name}
-              </figcaption>
-            </figure>
-          ))}
+              enroll now <span aria-hidden>&rarr;</span>
+            </a>
+          </div>
+          <div className="flex flex-col rounded-sm border border-neutral-200 bg-white p-6">
+            <div className="mb-1 text-[12px] uppercase tracking-[0.16em] text-[#888]">
+              spark plan
+            </div>
+            <div className="mb-1 flex items-baseline gap-2">
+              <span className="text-[36px] font-bold tracking-[-0.03em] text-neutral-950">
+                ₦80,000
+              </span>
+              <span className="text-[14px] text-[#888]">× 2</span>
+            </div>
+            <p className="mb-6 text-[13px]">split into two payments (₦160,000 total).</p>
+            <a
+              href={CHECKOUT_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-auto inline-flex items-center justify-center gap-2 rounded-sm border border-[#0099ff] px-6 py-3 text-[14px] font-medium text-[#0099ff] transition hover:bg-[#0099ff]/5"
+            >
+              start with ₦80,000 <span aria-hidden>&rarr;</span>
+            </a>
+          </div>
         </div>
+        <p className="mt-4 text-center text-[13px]">
+          secure checkout via nestuge &middot; naira or dollars &middot; full refund if you don&apos;t ship
+        </p>
       </section>
 
       {/* people are already asking — emails. commented out: replacing with a real-image carousel once mercy sends gpt-generated email screenshots. */}
@@ -507,58 +592,16 @@ export default function LaunchPage() {
       </section>
       */}
 
-      {/* founders */}
-      <section className="mx-auto w-full max-w-[900px] px-5 pt-24 sm:px-14">
-        <div className="mb-3 flex items-baseline gap-3 text-[12px] uppercase tracking-[0.18em] text-[#888]">
-          <span className="text-[#0099ff]">who&apos;s teaching</span>
-        </div>
-        <h2 className="mb-6 text-[28px] font-semibold leading-[1.15] tracking-[-0.025em] text-neutral-950 sm:text-[34px]">
-          mercy + joshua. building right alongside you.
-        </h2>
-        <div className="grid gap-6 sm:grid-cols-2">
-          <div className="rounded-sm border border-neutral-200 bg-white p-6">
-            <div className="mb-5 aspect-square w-full overflow-hidden rounded-sm bg-neutral-100">
-              <img
-                src="/team/mercy.jpg"
-                alt="mercy thaddeus"
-                className="h-full w-full object-cover"
-              />
-            </div>
-            <div className="mb-3 text-[18px] font-semibold text-neutral-950">
-              mercy thaddeus
-            </div>
-            <p className="text-[14px] leading-[1.6]">
-              builds with ai every day. teaches it to a community of 160k+ across the us, uk, canada, australia and beyond. runs the curriculum and live sessions.
-            </p>
-          </div>
-          <div className="rounded-sm border border-neutral-200 bg-white p-6">
-            <div className="mb-5 aspect-square w-full overflow-hidden rounded-sm bg-neutral-100">
-              <img
-                src="/team/joshua.jpg"
-                alt="joshua omobola"
-                className="h-full w-full object-cover"
-              />
-            </div>
-            <div className="mb-3 text-[18px] font-semibold text-neutral-950">
-              joshua omobola
-            </div>
-            <p className="text-[14px] leading-[1.6]">
-              ships products for a living. runs the build days. nobody leaves the bootcamp without something they can demo.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* guarantee */}
+      {/* guarantee — bold dark card */}
       <section className="mx-auto w-full max-w-[700px] px-5 pt-24 sm:px-14">
         <div className="mb-3 flex items-baseline gap-3 text-[12px] uppercase tracking-[0.18em] text-[#888]">
           <span className="text-[#0099ff]">the guarantee</span>
         </div>
-        <div className="rounded-sm border-2 border-dashed border-[#0099ff]/40 bg-white p-6 sm:p-8">
-          <h3 className="mb-3 text-[22px] font-semibold tracking-[-0.02em] text-neutral-950 sm:text-[26px]">
+        <div className="rounded-sm bg-neutral-950 p-8 text-white sm:p-10">
+          <h3 className="mb-4 text-[26px] font-bold leading-[1.1] tracking-[-0.025em] sm:text-[34px]">
             show up. ship something. or it&apos;s on us.
           </h3>
-          <p className="text-[15px] leading-[1.6]">
+          <p className="text-[16px] leading-[1.65] text-neutral-300 sm:text-[17px]">
             attend all five sessions. do the daily build. if by demo day you don&apos;t walk away with a live portfolio site and a real ai project, we refund every cent. and then we keep coaching you, free, until you do.
           </p>
         </div>
@@ -597,7 +640,7 @@ export default function LaunchPage() {
           <span className="text-[#888]">or you can start building.</span>
         </h2>
         <p className="mb-3 text-[16px] leading-[1.55]">
-          you already watched the playbook. you saw the wins. the $6k website job, the $750 dentist site, the furniture brand owner who rebuilt his whole storefront in a week.
+          you already watched the playbook. you saw the fellows. the $750 dentist site, the furniture brand owner who rebuilt his whole storefront in a week, the portfolios now landing real work.
         </p>
         <p className="mb-8 text-[16px] leading-[1.55]">
           seven days from now you&apos;ll either be the person other people come to with ai questions, or the one still asking them. that&apos;s the whole decision.
