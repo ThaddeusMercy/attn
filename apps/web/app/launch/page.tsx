@@ -1,5 +1,11 @@
 import type { Metadata } from "next";
 import { ScrollHero } from "./scroll-hero";
+import Image from "next/image";
+import { getCurrencyContext, PRICING } from "./currency";
+import { setCurrencyAction } from "./currency-actions";
+import { CurrencyToggle } from "./currency-toggle";
+import { TrackedEnrollLink } from "./tracked-enroll-link";
+import { TrackedVideoPlayer } from "./tracked-video-player";
 
 export const metadata: Metadata = {
   title: "the launch, ai accelerator bootcamp",
@@ -11,18 +17,55 @@ const CHECKOUT_URL = "https://dub.sh/attn-bravo";
 const YT_VIDEO_ID = "8sLAYjYbBTg";
 
 const inside = [
-  { title: "8 modules", body: "foundations · gen ai content · ai agents · running biz on claude · websites + apps · bi dashboards · transformation · distribution" },
-  { title: "final portfolio project", body: "a live site, your own ai-generated images and videos, case studies. what you send to clients." },
-  { title: "3 bonuses", body: "2 months in the af community · 1-on-1 strategy call · lifetime recordings." },
-  { title: "verified completion certificate", body: "shareable on linkedin. publicly verifiable on verify.attentionfactory.io." },
+  {
+    title: "8 modules",
+    body: "foundations · gen ai content · ai agents · running biz on claude · websites + apps · bi dashboards · transformation · distribution",
+  },
+  {
+    title: "final portfolio project",
+    body: "a live site, your own ai-generated images and videos, case studies. what you send to clients.",
+  },
+  {
+    title: "3 bonuses",
+    body: "2 months in the af community · 1-on-1 strategy call · lifetime recordings.",
+  },
+  {
+    title: "verified completion certificate",
+    body: "shareable on linkedin. publicly verifiable on verify.attentionfactory.io.",
+  },
 ];
 
 const proofVideos = [
-  { name: "maria", src: "/proof/maria.mp4", poster: "/proof/maria.jpg" },
-  { name: "henry", src: "/proof/henry.mp4", poster: "/proof/henry.jpg" },
-  { name: "amarachi", src: "/proof/amarachi.mp4", poster: "/proof/amarachi.jpg" },
-  { name: "sonia", src: "/proof/sonia.mp4", poster: "/proof/sonia.jpg" },
-  { name: "ogochukwu", src: "/proof/ogo.mp4", poster: "/proof/ogo.jpg" },
+  {
+    name: "maria",
+    src: "/proof/maria.mp4",
+    poster: "/proof/maria.jpg",
+    quote: "",
+  },
+  {
+    name: "henry",
+    src: "/proof/henry.mp4",
+    poster: "/proof/henry.jpg",
+    quote: "",
+  },
+  {
+    name: "amarachi",
+    src: "/proof/amarachi.mp4",
+    poster: "/proof/amarachi.jpg",
+    quote: "",
+  },
+  {
+    name: "sonia",
+    src: "/proof/sonia.mp4",
+    poster: "/proof/sonia.jpg",
+    quote: "",
+  },
+  {
+    name: "ogochukwu",
+    src: "/proof/ogo.mp4",
+    poster: "/proof/ogo.jpg",
+    quote: "",
+  },
 ];
 
 const faq = [
@@ -48,34 +91,40 @@ const faq = [
   },
 ];
 
-export default function LaunchPage() {
+export default async function LaunchPage() {
+  const { currency, isNigerianVisitor } = await getCurrencyContext();
+  const price = PRICING[currency];
+
   return (
     <main className="min-h-dvh bg-[#fefefe] text-[#888] font-mono">
       {/* enrollment banner */}
-      <div className="border-b border-neutral-200 bg-neutral-950 text-white">
+      <div className="border-b border-neutral-200 bg-black text-white">
         <div className="mx-auto flex w-full max-w-[900px] flex-wrap items-center justify-center gap-x-3 gap-y-1 px-5 py-2.5 text-center text-[12px] sm:px-14">
-          <span className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.16em] text-[#0099ff]">
-            <span className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-[#0099ff]" />
-            enrollment open
-          </span>
+          <span className="inline-flex items-center gap-2 text-[11px] uppercase font-medium text-white">
+            <span className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-white" />
+            Enrollment open
+          </span>{" "}
+          ✦
           <span className="text-white">
-            bravo&apos;26 starts <span className="font-semibold">july 1</span>.
-          </span>
-          <span className="text-neutral-400">
-            doors close once the cohort fills.
-          </span>
+            STARTS <span className="font-semibold">July 1st</span>
+          </span>{" "}
+          ✦<span className="text-white">Doors close once the cohort fills</span>
         </div>
       </div>
 
       {/* header */}
-      <header className="mx-auto w-full max-w-[900px] px-5 pt-10 pb-6 sm:px-14 sm:pt-14">
-        <div className="text-[14px] text-neutral-950">
-          attention factory university
-        </div>
+      <header className="mx-auto w-full max-w-[900px] px-5 pt-10 sm:px-14 sm:pt-14">
+        <h1 className="text-[38px] font-bold leading-[1.05] tracking-[-0.04em] text-neutral-950 sm:text-[50px]">
+          attention factory
+        </h1>
       </header>
 
+      <div className="mx-auto w-full px-5 pt-10 pb-6 sm:px-14 sm:pt-14">
+        <Image src="/heroimage.png" alt="the guide to earn from ai opportunities — mercy + joshua" width={900} height={500} className="w-full h-auto" />
+      </div>
+
       {/* hero — pinned scroll-reveal headline */}
-      <ScrollHero checkoutUrl={CHECKOUT_URL} />
+      <ScrollHero checkoutUrl={CHECKOUT_URL} currency={currency} />
 
       {/* hero banner image */}
       <section className="mx-auto w-full max-w-[900px] px-5 pt-12 sm:px-14">
@@ -99,22 +148,27 @@ export default function LaunchPage() {
         </h2>
         <div className="max-w-[760px] space-y-4 text-[16px] leading-[1.6] sm:text-[17px]">
           <p>
-            in 7 days, we walk you through ai content brands pay for, real ai agents, and automations that run your work, your business, and your life.
+            in 7 days, we walk you through ai content brands pay for, real ai
+            agents, and automations that run your work, your business, and your
+            life.
           </p>
           <p>
-            we use this every day at attention factory, and we build it for brands and companies across the world. we&apos;ll show you how, then teach you to build your own. we&apos;ll also show you how we stay ahead and updated with ai.
+            we use this every day at attention factory, and we build it for
+            brands and companies across the world. we&apos;ll show you how, then
+            teach you to build your own. we&apos;ll also show you how we stay
+            ahead and updated with ai.
           </p>
         </div>
 
         <div className="mt-8 flex flex-wrap items-center gap-4">
-          <a
+          <TrackedEnrollLink
             href={CHECKOUT_URL}
-            target="_blank"
-            rel="noopener noreferrer"
+            source="framing"
+            currency={currency}
             className="inline-flex items-center gap-2 rounded-sm bg-[#0099ff] px-6 py-4 text-[15px] font-medium text-white transition hover:bg-[#0088e6]"
           >
             join bravo&apos;26 <span aria-hidden>&rarr;</span>
-          </a>
+          </TrackedEnrollLink>
           <p className="text-[13px] text-[#888]">
             seats are limited &middot; cohort starts july 1
           </p>
@@ -148,7 +202,9 @@ export default function LaunchPage() {
       {/* webinar embed */}
       <section className="mx-auto w-full max-w-[900px] px-5 pt-16 sm:px-14">
         <p className="mb-5 text-[14px] leading-[1.55]">
-the full masterclass, free. the exact playbook we use to make ai videos brands pay for, build websites without code, and automate the busywork.
+          the full masterclass, free. the exact playbook we use to make ai
+          videos brands pay for, build websites without code, and automate the
+          busywork.
         </p>
 
         <div className="mb-8 overflow-hidden rounded-sm border border-neutral-200 bg-black shadow-sm">
@@ -166,7 +222,6 @@ the full masterclass, free. the exact playbook we use to make ai videos brands p
             <span className="text-[#0099ff]">free to watch</span>
           </div>
         </div>
-
       </section>
 
       {/* who's in this room */}
@@ -175,36 +230,44 @@ the full masterclass, free. the exact playbook we use to make ai videos brands p
           <span className="text-[#0099ff]">who&apos;s in this room</span>
         </div>
         <h2 className="mb-3 text-[28px] font-semibold leading-[1.15] tracking-[-0.025em] text-neutral-950 sm:text-[34px]">
-          we&apos;re not training &ldquo;ai users.&rdquo; we&apos;re training the people building the next wave.
+          we&apos;re not training &ldquo;ai users.&rdquo; we&apos;re training
+          the people building the next wave.
         </h2>
         <p className="mb-8 max-w-[680px] text-[16px] leading-[1.55]">
-          find yourself in one of these? that&apos;s exactly who this is built for.
+          find yourself in one of these? that&apos;s exactly who this is built
+          for.
         </p>
         <div className="grid gap-3 sm:grid-cols-2">
           {[
             {
               persona: "people with a 9–5",
-              outcome: "turn one part of your job into a paid side income. or become the &ldquo;ai person&rdquo; your boss can&apos;t replace.",
+              outcome:
+                "turn one part of your job into a paid side income. or become the &ldquo;ai person&rdquo; your boss can&apos;t replace.",
             },
             {
               persona: "freelancers + creators",
-              outcome: "add ai content, ugc, and websites to your service menu. deliver in half the time. charge 3x.",
+              outcome:
+                "add ai content, ugc, and websites to your service menu. deliver in half the time. charge 3x.",
             },
             {
               persona: "people starting an agency",
-              outcome: "this is the moment. build the ai-native agency before everyone else figures out what that even means.",
+              outcome:
+                "this is the moment. build the ai-native agency before everyone else figures out what that even means.",
             },
             {
               persona: "consultants + business advisors",
-              outcome: "open an ai service line for clients you already have. they&apos;d rather buy it from you than find someone new.",
+              outcome:
+                "open an ai service line for clients you already have. they&apos;d rather buy it from you than find someone new.",
             },
             {
               persona: "existing business owners",
-              outcome: "rebuild your operations on ai. cut 30+ hours/week from manual work. ship the products you&apos;ve been delaying.",
+              outcome:
+                "rebuild your operations on ai. cut 30+ hours/week from manual work. ship the products you&apos;ve been delaying.",
             },
             {
               persona: "career-switchers",
-              outcome: "exit the role that doesn&apos;t fit. land your first ai-related role in 30 days. portfolio and playbook included.",
+              outcome:
+                "exit the role that doesn&apos;t fit. land your first ai-related role in 30 days. portfolio and playbook included.",
             },
           ].map((p) => (
             <div
@@ -235,26 +298,32 @@ the full masterclass, free. the exact playbook we use to make ai videos brands p
         <p className="mb-8 text-[14px]">
           unedited. in their own words. press play on any of them.
         </p>
-        <div className="flex flex-wrap justify-center gap-4">
-          {proofVideos.map((v) => (
-            <figure
-              key={v.name}
-              className="w-[calc(50%-0.5rem)] overflow-hidden rounded-sm border border-neutral-200 bg-black sm:w-[calc(33.333%-0.75rem)]"
-            >
-              <video
-                controls
-                preload="metadata"
-                poster={v.poster}
-                className="aspect-video w-full bg-black object-contain"
-                playsInline
+        {/* snap-scroll carousel; bleeds off the right edge so the next card peeks in */}
+        <div className="-mr-5 overflow-x-auto sm:-mr-14 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+          <ul className="flex snap-x snap-mandatory gap-4 pb-2 pr-5 sm:pr-14">
+            {proofVideos.map((v) => (
+              <li
+                key={v.name}
+                className="w-[88%] shrink-0 snap-start sm:w-[70%] lg:w-[58%]"
               >
-                <source src={v.src} type="video/mp4" />
-              </video>
-              <figcaption className="bg-white px-4 py-3 text-[12px] uppercase tracking-[0.14em] text-[#888]">
-                {v.name}
-              </figcaption>
-            </figure>
-          ))}
+                <figure>
+                  <div className="aspect-video overflow-hidden rounded-2xl bg-black">
+                    <TrackedVideoPlayer name={v.name} src={v.src} />
+                  </div>
+                  <figcaption className="mt-4">
+                    <div className="text-[14px] font-medium text-neutral-950">
+                      {v.name}
+                    </div>
+                    {v.quote ? (
+                      <p className="mt-1 text-[13px] leading-[1.55] text-[#888]">
+                        {v.quote}
+                      </p>
+                    ) : null}
+                  </figcaption>
+                </figure>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
@@ -267,14 +336,14 @@ the full masterclass, free. the exact playbook we use to make ai videos brands p
           <h2 className="mb-5 text-[24px] font-semibold tracking-[-0.025em] text-neutral-950 sm:text-[28px]">
             lock your seat. cohort starts july 1.
           </h2>
-          <a
+          <TrackedEnrollLink
             href={CHECKOUT_URL}
-            target="_blank"
-            rel="noopener noreferrer"
+            source="cta_mid"
+            currency={currency}
             className="inline-flex w-full items-center justify-center gap-2 rounded-sm bg-[#0099ff] px-6 py-4 text-[15px] font-medium text-white transition hover:bg-[#0088e6] sm:w-auto sm:px-8"
           >
             enroll now <span aria-hidden>&rarr;</span>
-          </a>
+          </TrackedEnrollLink>
           <p className="mt-3 text-[12px]">
             secure checkout via nestuge. full refund if you don&apos;t ship.
           </p>
@@ -292,7 +361,10 @@ the full masterclass, free. the exact playbook we use to make ai videos brands p
         </h2>
         <ul className="divide-y divide-neutral-200 border-y border-neutral-200">
           {inside.map((row) => (
-            <li key={row.title} className="grid gap-2 py-5 sm:grid-cols-[200px_1fr] sm:gap-8">
+            <li
+              key={row.title}
+              className="grid gap-2 py-5 sm:grid-cols-[200px_1fr] sm:gap-8"
+            >
               <div className="text-[15px] font-semibold text-neutral-950">
                 {row.title}
               </div>
@@ -308,38 +380,45 @@ the full masterclass, free. the exact playbook we use to make ai videos brands p
           <span className="text-[#0099ff]">who&apos;s teaching</span>
         </div>
         <h2 className="mb-6 text-[28px] font-semibold leading-[1.15] tracking-[-0.025em] text-neutral-950 sm:text-[34px]">
-          mercy + joshua. building right alongside you.
+          mercy + joshua ⏤ building with you.
         </h2>
         <div className="grid gap-6 sm:grid-cols-2">
-          <div className="rounded-sm border border-neutral-200 bg-white p-6">
-            <div className="mb-5 aspect-[4/5] w-full overflow-hidden rounded-sm bg-neutral-100">
+          <div className="rounded-sm border border-neutral-200 bg-white">
+            <div className="aspect-4/5 w-full overflow-hidden bg-neutral-100">
               <img
                 src="/team/mercy.jpg"
                 alt="mercy thaddeus"
-                className="h-full w-full object-contain"
+                className="w-full object-contain"
               />
             </div>
-            <div className="mb-3 text-[18px] font-semibold text-neutral-950">
-              mercy thaddeus
+            <div className="p-6">
+              <div className="text-[18px] font-semibold text-neutral-950">
+                mercy thaddeus
+              </div>
+              <p className="text-[14px] leading-[1.6] tracking-tight">
+                builds with ai every day. teaches it to a community of 160k+
+                across the us, uk, canada, australia and beyond. runs the
+                curriculum and live sessions.
+              </p>
             </div>
-            <p className="text-[14px] leading-[1.6]">
-              builds with ai every day. teaches it to a community of 160k+ across the us, uk, canada, australia and beyond. runs the curriculum and live sessions.
-            </p>
           </div>
-          <div className="rounded-sm border border-neutral-200 bg-white p-6">
-            <div className="mb-5 aspect-[4/5] w-full overflow-hidden rounded-sm bg-neutral-100">
+          <div className="rounded-sm border border-neutral-200 bg-white">
+            <div className="aspect-4/5 w-full overflow-hidden bg-neutral-100">
               <img
                 src="/team/joshua.jpg"
                 alt="joshua omobola"
-                className="h-full w-full object-contain"
+                className="w-full object-contain"
               />
             </div>
-            <div className="mb-3 text-[18px] font-semibold text-neutral-950">
+            <div className="p-6">
+            <div className="text-[18px] font-semibold text-neutral-950">
               joshua omobola
             </div>
-            <p className="text-[14px] leading-[1.6]">
-              ships products for a living. runs the build days. nobody leaves the bootcamp without something they can demo.
+            <p className="text-[14px] leading-[1.6] tracking-tight">
+              ships products for a living. nobody leaves the bootcamp without something they can demo. teaches it to a community of 80k+
+              across the us, uk, canada, australia and beyond. 
             </p>
+            </div>
           </div>
         </div>
       </section>
@@ -363,25 +442,29 @@ the full masterclass, free. the exact playbook we use to make ai videos brands p
               <li className="flex gap-2">
                 <span className="text-[#0099ff]">→</span>
                 <span className="text-neutral-950">
-                  you feel like the ai wave is moving without you and you&apos;re tired of saving tips you never use.
+                  you feel like the ai wave is moving without you and
+                  you&apos;re tired of saving tips you never use.
                 </span>
               </li>
               <li className="flex gap-2">
                 <span className="text-[#0099ff]">→</span>
                 <span className="text-neutral-950">
-                  you want a real outcome. first paid client, new role, an agency, a side income.
+                  you want a real outcome. first paid client, new role, an
+                  agency, a side income.
                 </span>
               </li>
               <li className="flex gap-2">
                 <span className="text-[#0099ff]">→</span>
                 <span className="text-neutral-950">
-                  you&apos;re willing to show up and ship something this week, not just bookmark and scroll.
+                  you&apos;re willing to show up and ship something this week,
+                  not just bookmark and scroll.
                 </span>
               </li>
               <li className="flex gap-2">
                 <span className="text-[#0099ff]">→</span>
                 <span className="text-neutral-950">
-                  you want to be the person other people come to with ai questions, not the one asking next year.
+                  you want to be the person other people come to with ai
+                  questions, not the one asking next year.
                 </span>
               </li>
             </ul>
@@ -392,46 +475,57 @@ the full masterclass, free. the exact playbook we use to make ai videos brands p
               <span>&minus;</span>
               <span>this is not for you if</span>
             </div>
-            <ul className="space-y-3 text-[15px] leading-[1.5]">
+            <ul className="space-y-3 text-[15px] leading-normal">
               <li className="flex gap-2">
                 <span className="text-[#888]">×</span>
                 <span className="text-neutral-700">
-                  you want a guaranteed-income promise. we promise the skill and the playbook, not a check.
+                  you want a guaranteed-income promise. we promise the skill and
+                  the playbook, not a check.
                 </span>
               </li>
               <li className="flex gap-2">
                 <span className="text-[#888]">×</span>
                 <span className="text-neutral-700">
-                  you want to &ldquo;become an ai expert overnight.&rdquo; this is one week of intense building, not a magic shortcut.
+                  you want to &ldquo;become an ai expert overnight.&rdquo; this
+                  is one week of intense building, not a magic shortcut.
                 </span>
               </li>
               <li className="flex gap-2">
                 <span className="text-[#888]">×</span>
                 <span className="text-neutral-700">
-                  you&apos;re looking for content to consume. we&apos;re looking for fellows to ship.
+                  you&apos;re looking for content to consume. we&apos;re looking
+                  for fellows to ship.
                 </span>
               </li>
               <li className="flex gap-2">
                 <span className="text-[#888]">×</span>
                 <span className="text-neutral-700">
-                  you&apos;d rather watch tutorials than ship your own work. sessions are recorded, but recordings only help if you actually use them.
+                  you&apos;d rather watch tutorials than ship your own work.
+                  sessions are recorded, but recordings only help if you
+                  actually use them.
                 </span>
               </li>
             </ul>
           </div>
         </div>
         <p className="mt-6 text-[14px]">
-          if you read the left column and felt seen, you&apos;re in the right room.
+          if you read the left column and felt seen, you&apos;re in the right
+          room.
         </p>
       </section>
 
       {/* price CTA — nestuge-style breakdown */}
       <section className="mx-auto w-full max-w-[700px] px-5 pt-24 sm:px-14">
-        <div className="mb-3 flex items-baseline gap-3 text-[12px] uppercase tracking-[0.18em] text-[#888]">
-          <span className="text-[#0099ff]">ready to join?</span>
+        <div className="mb-3 flex items-center justify-between gap-3">
+          <span className="text-[12px] uppercase tracking-[0.18em] text-[#0099ff]">
+            ready to join?
+          </span>
+          {isNigerianVisitor ? (
+            <CurrencyToggle currency={currency} setCurrency={setCurrencyAction} />
+          ) : null}
         </div>
         <h2 className="mb-6 text-[28px] font-semibold leading-[1.15] tracking-[-0.025em] text-neutral-950 sm:text-[34px]">
-          one bootcamp. two ways to pay.
+          One Accelerator.
         </h2>
         <div className="grid gap-4 sm:grid-cols-2">
           <div className="flex flex-col rounded-sm border border-neutral-200 bg-white p-6">
@@ -439,17 +533,18 @@ the full masterclass, free. the exact playbook we use to make ai videos brands p
               pay in full
             </div>
             <div className="mb-1 text-[36px] font-bold tracking-[-0.03em] text-neutral-950">
-              ₦150,000
+              {price.full}
             </div>
-            <p className="mb-6 text-[13px]">one payment, done. (~$149)</p>
-            <a
+            <p className="mb-6 text-[13px]">{price.fullNote}</p>
+            <TrackedEnrollLink
               href={CHECKOUT_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+              source="pricing"
+              plan="full"
+              currency={currency}
               className="mt-auto inline-flex items-center justify-center gap-2 rounded-sm bg-[#0099ff] px-6 py-3 text-[14px] font-medium text-white transition hover:bg-[#0088e6]"
             >
               enroll now <span aria-hidden>&rarr;</span>
-            </a>
+            </TrackedEnrollLink>
           </div>
           <div className="flex flex-col rounded-sm border border-neutral-200 bg-white p-6">
             <div className="mb-1 text-[12px] uppercase tracking-[0.16em] text-[#888]">
@@ -457,23 +552,27 @@ the full masterclass, free. the exact playbook we use to make ai videos brands p
             </div>
             <div className="mb-1 flex items-baseline gap-2">
               <span className="text-[36px] font-bold tracking-[-0.03em] text-neutral-950">
-                ₦80,000
+                {price.installment}
               </span>
               <span className="text-[14px] text-[#888]">× 2</span>
             </div>
-            <p className="mb-6 text-[13px]">split into two payments (₦160,000 total).</p>
-            <a
+            <p className="mb-6 text-[13px]">
+              split into two payments ({price.installmentTotal} total).
+            </p>
+            <TrackedEnrollLink
               href={CHECKOUT_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+              source="pricing"
+              plan="spark"
+              currency={currency}
               className="mt-auto inline-flex items-center justify-center gap-2 rounded-sm border border-[#0099ff] px-6 py-3 text-[14px] font-medium text-[#0099ff] transition hover:bg-[#0099ff]/5"
             >
-              start with ₦80,000 <span aria-hidden>&rarr;</span>
-            </a>
+              {price.installmentCTA} <span aria-hidden>&rarr;</span>
+            </TrackedEnrollLink>
           </div>
         </div>
         <p className="mt-4 text-center text-[13px]">
-          secure checkout via nestuge &middot; naira or dollars &middot; full refund if you don&apos;t ship
+          secure checkout via nestuge &middot; naira or dollars &middot; full
+          refund if you don&apos;t ship
         </p>
       </section>
 
@@ -602,7 +701,10 @@ the full masterclass, free. the exact playbook we use to make ai videos brands p
             show up. ship something. or it&apos;s on us.
           </h3>
           <p className="text-[16px] leading-[1.65] text-neutral-300 sm:text-[17px]">
-            attend all five sessions. do the daily build. if by demo day you don&apos;t walk away with a live portfolio site and a real ai project, we refund every cent. and then we keep coaching you, free, until you do.
+            attend all five sessions. do the daily build. if by demo day you
+            don&apos;t walk away with a live portfolio site and a real ai
+            project, we refund every cent. and then we keep coaching you, free,
+            until you do.
           </p>
         </div>
       </section>
@@ -640,21 +742,26 @@ the full masterclass, free. the exact playbook we use to make ai videos brands p
           <span className="text-[#888]">or you can start building.</span>
         </h2>
         <p className="mb-3 text-[16px] leading-[1.55]">
-          you already watched the playbook. you saw the fellows. the $750 dentist site, the furniture brand owner who rebuilt his whole storefront in a week, the portfolios now landing real work.
+          you already watched the playbook. you saw the fellows. the $750
+          dentist site, the furniture brand owner who rebuilt his whole
+          storefront in a week, the portfolios now landing real work.
         </p>
         <p className="mb-8 text-[16px] leading-[1.55]">
-          seven days from now you&apos;ll either be the person other people come to with ai questions, or the one still asking them. that&apos;s the whole decision.
+          seven days from now you&apos;ll either be the person other people come
+          to with ai questions, or the one still asking them. that&apos;s the
+          whole decision.
         </p>
-        <a
+        <TrackedEnrollLink
           href={CHECKOUT_URL}
-          target="_blank"
-          rel="noopener noreferrer"
+          source="final"
+          currency={currency}
           className="inline-flex items-center gap-2 rounded-sm bg-[#0099ff] px-6 py-4 text-[15px] font-medium text-white transition hover:bg-[#0088e6]"
         >
           enroll now <span aria-hidden>&rarr;</span>
-        </a>
+        </TrackedEnrollLink>
         <p className="mt-3 text-[13px]">
-          cohort starts july 1 &middot; first 10 get the mercy + joshua collab &middot; full refund if you don&apos;t ship
+          cohort starts july 1 &middot; first 10 get the mercy + joshua collab
+          &middot; full refund if you don&apos;t ship
         </p>
       </section>
 
@@ -662,7 +769,9 @@ the full masterclass, free. the exact playbook we use to make ai videos brands p
       <footer className="border-t border-neutral-200 bg-white">
         <div className="mx-auto w-full max-w-[900px] px-5 py-10 text-[13px] sm:px-14">
           <div className="flex flex-wrap items-center justify-between gap-3">
-            <span className="text-neutral-950">attention factory university</span>
+            <span className="text-neutral-950">
+              attention factory university
+            </span>
             <span className="text-[#888]">
               ai accelerator bootcamp &middot; bravo&apos;26 &middot; july 1
             </span>
