@@ -152,7 +152,7 @@ const SectionLabel = ({ no, label }: { no: string; label: string }) => (
 );
 
 const CTAButton = ({
-  label = "enroll now — ₦150,000",
+  label = "enroll now",
   variant = "primary",
   size = "lg",
 }: {
@@ -565,52 +565,26 @@ export default function UniversityPage() {
         </div>
       </section>
 
-      {/* the math */}
+      {/* the math — minimal price */}
       <section id="enroll" className="mx-auto w-full max-w-[700px] px-5 pt-24 sm:px-14">
-        <SectionLabel no="06" label="the math" />
+        <SectionLabel no="06" label="enroll" />
         <div className="rounded-sm border border-neutral-200 bg-white p-6 sm:p-8">
-          <div className="mb-2 text-[13px] uppercase tracking-[0.16em] text-[#888]">
-            stacked value
+          <div className="mb-1 text-[12px] uppercase tracking-[0.16em] text-[#888]">
+            investment
           </div>
           <div className="mb-2 flex flex-wrap items-baseline gap-x-3 gap-y-1">
-            <div className="text-[48px] font-bold tracking-[-0.04em] text-neutral-950 sm:text-[64px]">
-              ₦2,775,000
-            </div>
-            <div className="text-[16px] text-[#888]">(~$1,850)</div>
+            <span className="text-[22px] font-medium tracking-[-0.02em] text-neutral-950 sm:text-[24px]">
+              ₦150,000
+            </span>
+            <span className="text-[13px] text-[#888]">(~$149)</span>
           </div>
-          <p className="mb-6 text-[14px]">
-            8 modules ($1,440) + final portfolio ($230) + 3 stacked bonuses ($550). real value, not invented.
+          <p className="mb-6 text-[13px]">
+            or pay in two parts of <span className="text-neutral-950">₦80,000</span> on the spark plan.
           </p>
 
-          <div className="mb-6 border-t border-neutral-200 pt-6">
-            <div className="mb-2 flex items-center gap-2 text-[13px] uppercase tracking-[0.16em] text-[#888]">
-              <span className="inline-block h-1.5 w-1.5 rounded-full bg-[#0099ff]" />
-              your investment today
-            </div>
-            <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-              <span className="text-[26px] font-semibold tracking-[-0.02em] text-neutral-950 sm:text-[30px]">
-                ₦150,000
-              </span>
-              <span className="text-[14px] text-[#888]">(~$149)</span>
-            </div>
-            <p className="mt-2 text-[13px]">
-              or <span className="text-neutral-950">₦80,000 × 2</span> on the spark plan &mdash; pay in two parts (₦160,000 total).
-            </p>
-            <p className="mt-3 text-[14px]">
-              you&apos;re saving <span className="text-neutral-950">₦2,625,000</span> off stacked value. prices climb as the cohort fills.
-            </p>
-          </div>
-
-          <CTAButton label="enroll now — ₦150,000" />
-          <p className="mt-3 text-center text-[13px]">
-            pay in full or in installments &middot; paystack &middot; selar &middot; card
-          </p>
-        </div>
-
-        {/* The "if it only..." Hormozi callout */}
-        <div className="mt-8 rounded-sm border-l-4 border-[#0099ff] bg-white p-5">
-          <p className="text-[15px] leading-[1.6] text-neutral-950">
-            think about this: <span className="text-[#888]">land one ₦450,000/month (~$300) retainer from what you build this week, and you&apos;re net positive in week two — and ₦5,400,000+ over the next year from a single client. one client. one week.</span>
+          <CTAButton label="enroll now" />
+          <p className="mt-3 text-[12px]">
+            paystack &middot; selar &middot; card &middot; naira or dollars
           </p>
         </div>
       </section>
@@ -681,16 +655,15 @@ export default function UniversityPage() {
         <div className="grid gap-6 sm:grid-cols-2">
           {/* Mercy */}
           <div className="rounded-sm border border-neutral-200 bg-white p-6">
-            <div className="mb-5 aspect-square w-full overflow-hidden rounded-sm bg-neutral-100 text-[11px] uppercase tracking-[0.14em] text-[#888]">
-              <div className="flex h-full w-full items-center justify-center">
-                mercy photo
-              </div>
+            <div className="mb-5 aspect-square w-full overflow-hidden rounded-sm bg-neutral-100">
+              <img
+                src="/team/mercy.jpg"
+                alt="mercy thaddeus"
+                className="h-full w-full object-cover"
+              />
             </div>
-            <div className="mb-1 text-[18px] font-semibold text-neutral-950">
+            <div className="mb-3 text-[18px] font-semibold text-neutral-950">
               mercy thaddeus
-            </div>
-            <div className="mb-3 text-[12px] uppercase tracking-[0.14em] text-[#888]">
-              co-founder &middot; head of teaching
             </div>
             <p className="text-[14px] leading-[1.6]">
               builds with ai every day. teaches it to a community of 160k+ across the us, uk, canada, australia and beyond. runs the curriculum and live sessions &mdash; the same path that&apos;s put fellows on real projects and real payroll.
@@ -699,16 +672,15 @@ export default function UniversityPage() {
 
           {/* Joshua */}
           <div className="rounded-sm border border-neutral-200 bg-white p-6">
-            <div className="mb-5 aspect-square w-full overflow-hidden rounded-sm bg-neutral-100 text-[11px] uppercase tracking-[0.14em] text-[#888]">
-              <div className="flex h-full w-full items-center justify-center">
-                joshua photo
-              </div>
+            <div className="mb-5 aspect-square w-full overflow-hidden rounded-sm bg-neutral-100">
+              <img
+                src="/team/joshua.jpg"
+                alt="joshua omobola"
+                className="h-full w-full object-cover"
+              />
             </div>
-            <div className="mb-1 text-[18px] font-semibold text-neutral-950">
+            <div className="mb-3 text-[18px] font-semibold text-neutral-950">
               joshua omobola
-            </div>
-            <div className="mb-3 text-[12px] uppercase tracking-[0.14em] text-[#888]">
-              co-founder &middot; head of build
             </div>
             <p className="text-[14px] leading-[1.6]">
               ships products for a living. runs the build days &mdash; where you walk in with an idea and walk out with a working thing. nobody leaves the bootcamp without something they can demo.
@@ -771,66 +743,99 @@ export default function UniversityPage() {
             </div>
           </div>
         </div>
-        <CTAButton label="enroll now — ₦150,000" />
+        <CTAButton label="enroll now" />
         <p className="mt-3 text-[13px]">
           first 10 get a collab with mercy &amp; joshua &middot; full refund if you don&apos;t ship
         </p>
       </section>
 
-      {/* not ready — lead magnet (webinar replay) */}
+      {/* free masterclass — lead magnet */}
       <section className="border-t border-neutral-200 bg-[#fefefe] py-20">
         <div className="mx-auto w-full max-w-[900px] px-5 sm:px-14">
           <div className="mb-3 inline-flex items-center gap-2 rounded-sm bg-[#0099ff] px-2 py-[2px] text-[11px] uppercase tracking-[0.16em] text-white">
-            free training
+            free masterclass
           </div>
           <h2 className="mb-4 text-[28px] font-semibold leading-[1.15] tracking-[-0.025em] text-neutral-950 sm:text-[36px]">
-            not ready to enroll?{" "}
-            <span className="text-[#0099ff]">watch this first.</span>
+            the 90-minute training that turns ai-curious{" "}
+            <span className="text-[#0099ff]">into ai-paid.</span>
           </h2>
           <p className="mb-8 max-w-[640px] text-[16px] leading-[1.6]">
-            the full 90-minute masterclass that introduces the same playbook fellows use inside the bootcamp &mdash; the five ai income streams, the &ldquo;year of the generalist&rdquo; positioning, and the exact moves that turn ai skills into paying clients. free, no catch.
+            the exact playbook our fellows use, condensed into one session. drop your email, get it instantly. no upsell, no fluff &mdash; this is the same training people would gladly pay for.
           </p>
 
           <div className="grid items-stretch gap-6 sm:grid-cols-[1fr_1fr]">
             <div className="overflow-hidden rounded-sm border border-neutral-200 bg-white">
-              <div className="flex aspect-video w-full items-center justify-center bg-neutral-100 text-[11px] uppercase tracking-[0.16em] text-[#888]">
-                webinar thumbnail
+              <div className="aspect-video w-full overflow-hidden bg-neutral-100">
+                <img
+                  src="/proof/webinar.jpg"
+                  alt="the guide to earn from ai opportunities — free masterclass"
+                  className="h-full w-full object-cover"
+                />
               </div>
               <div className="border-t border-neutral-200 px-4 py-3 text-[12px] uppercase tracking-[0.14em] text-[#888]">
-                90 min &middot; mercy + joshua &middot; recorded live
+                90 min &middot; mercy + joshua &middot; instant access
               </div>
             </div>
 
-            <form
-              className="flex flex-col gap-3 rounded-sm border border-neutral-200 bg-white p-5"
-              action="https://dub.sh/attn-webinar"
-              method="get"
-            >
-              <label className="text-[12px] uppercase tracking-[0.16em] text-[#888]">
-                where should we send it?
-              </label>
-              <input
-                type="text"
-                name="name"
-                placeholder="first name"
-                className="rounded-sm border border-neutral-200 bg-white px-3 py-3 text-[14px] text-neutral-950 placeholder:text-[#888] focus:border-[#0099ff] focus:outline-none"
-              />
-              <input
-                type="email"
-                name="email"
-                placeholder="email address"
-                className="rounded-sm border border-neutral-200 bg-white px-3 py-3 text-[14px] text-neutral-950 placeholder:text-[#888] focus:border-[#0099ff] focus:outline-none"
-              />
-              <button
-                type="submit"
-                className="mt-1 inline-flex items-center justify-center gap-2 rounded-sm bg-[#0099ff] px-5 py-3 text-[14px] font-medium text-white transition hover:bg-[#0088e6]"
-              >
-                send me the masterclass <span aria-hidden>&rarr;</span>
-              </button>
-              <p className="mt-1 text-[11px] leading-[1.5] text-[#888]">
-                no spam. unsubscribe anytime. we never share your email.
-              </p>
-            </form>
+            <div className="flex flex-col justify-between rounded-sm border border-neutral-200 bg-white p-6">
+              <div>
+                <div className="mb-3 text-[12px] uppercase tracking-[0.14em] text-[#888]">
+                  what you&apos;ll walk away with
+                </div>
+                <ul className="space-y-2 text-[14px] leading-[1.5]">
+                  <li className="flex gap-2">
+                    <span className="text-[#0099ff]">+</span>
+                    <span className="text-neutral-950">
+                      the 5 ai income streams paying ₦100k–₦1m+ right now
+                    </span>
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="text-[#0099ff]">+</span>
+                    <span className="text-neutral-950">
+                      how to position so businesses choose you
+                    </span>
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="text-[#0099ff]">+</span>
+                    <span className="text-neutral-950">
+                      ai video, ugc, voice clones brands pay for
+                    </span>
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="text-[#0099ff]">+</span>
+                    <span className="text-neutral-950">
+                      websites + apps with zero code
+                    </span>
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="text-[#0099ff]">+</span>
+                    <span className="text-neutral-950">
+                      automations businesses pay ₦50k–₦500k/mo for
+                    </span>
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="text-[#0099ff]">+</span>
+                    <span className="text-neutral-950">
+                      first paid client in 30 days &mdash; the exact move
+                    </span>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="mt-6">
+                <a
+                  href="https://lu.ma/attn-masterclass"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-sm bg-[#0099ff] px-5 py-4 text-[15px] font-medium text-white transition hover:bg-[#0088e6]"
+                >
+                  register free on luma <span aria-hidden>&rarr;</span>
+                </a>
+                <p className="mt-2 text-center text-[11px] text-[#888]">
+                  free &middot; instant calendar invite &middot; zero upsell
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -850,7 +855,7 @@ export default function UniversityPage() {
           <p className="mb-8 text-[16px] leading-[1.6]">
             every week without ai is a week your peers are pulling ahead with it. by next month, &ldquo;ai-fluent&rdquo; stops being a differentiator and starts being a baseline. you can be early to that line. or you can be late to it.
           </p>
-          <CTAButton label="enroll now — ₦150,000" />
+          <CTAButton label="enroll now" />
           <p className="mt-3 text-[13px]">
             cohort starts july 1 &middot; first 10 get the mercy + joshua collab &middot; full refund if you don&apos;t ship
           </p>
