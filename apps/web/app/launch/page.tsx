@@ -14,6 +14,7 @@ export const metadata: Metadata = {
 
 const CHECKOUT_URL = "https://dub.sh/attn-bravo";
 const YT_VIDEO_ID = "8sLAYjYbBTg";
+const YT_WEBINAR_ID = "UxcXRuHBpdg";
 
 const inside = [
   {
@@ -223,7 +224,7 @@ export default async function LaunchPage() {
           <div className="aspect-video w-full">
             <iframe
               className="h-full w-full"
-              src={`https://www.youtube-nocookie.com/embed/${YT_VIDEO_ID}?rel=0&modestbranding=1`}
+              src={`https://www.youtube-nocookie.com/embed/${YT_WEBINAR_ID}?rel=0&modestbranding=1`}
               title="the guide to earn from ai opportunities, masterclass"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
