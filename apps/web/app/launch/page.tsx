@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { ScrollHero } from "./scroll-hero";
-import Image from "next/image";
 import { getCurrencyContext, PRICING } from "./currency";
 import { setCurrencyAction } from "./currency-actions";
 import { CurrencyToggle } from "./currency-toggle";
@@ -119,8 +118,25 @@ export default async function LaunchPage() {
         </h1>
       </header>
 
-      <div className="mx-auto w-full px-5 pt-10 pb-6 sm:px-14 sm:pt-14">
-        <Image src="/heroimage.png" alt="the guide to earn from ai opportunities — mercy + joshua" width={900} height={500} className="w-full h-auto" />
+      <div className="mx-auto w-full max-w-[900px] px-5 pt-10 pb-6 sm:px-14 sm:pt-14">
+        <h2 className="mb-4 text-[22px] font-semibold leading-[1.15] tracking-[-0.025em] text-neutral-950 sm:text-[28px]">
+          watch the webinar replay
+        </h2>
+        <div className="overflow-hidden rounded-sm border border-neutral-200 bg-black shadow-sm">
+          <div className="aspect-video w-full">
+            <iframe
+              className="h-full w-full"
+              src={`https://www.youtube-nocookie.com/embed/${YT_VIDEO_ID}?rel=0&modestbranding=1`}
+              title="the guide to earn from ai opportunities, masterclass"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            />
+          </div>
+          <div className="flex flex-wrap items-center justify-between gap-3 border-t border-neutral-200 bg-white px-4 py-3 text-[12px] uppercase tracking-[0.14em] text-[#888]">
+            <span>the masterclass &middot; 1h 54m &middot; mercy + joshua</span>
+            <span className="text-[#0099ff]">free to watch</span>
+          </div>
+        </div>
       </div>
 
       {/* hero — pinned scroll-reveal headline */}
@@ -201,11 +217,7 @@ export default async function LaunchPage() {
 
       {/* webinar embed */}
       <section className="mx-auto w-full max-w-[900px] px-5 pt-16 sm:px-14">
-        <p className="mb-5 text-[14px] leading-[1.55]">
-          the full masterclass, free. the exact playbook we use to make ai
-          videos brands pay for, build websites without code, and automate the
-          busywork.
-        </p>
+        <p className="mb-5 text-[20px] leading-[1.55] font-semibold">Watch the Webinar</p>
 
         <div className="mb-8 overflow-hidden rounded-sm border border-neutral-200 bg-black shadow-sm">
           <div className="aspect-video w-full">
@@ -411,13 +423,14 @@ export default async function LaunchPage() {
               />
             </div>
             <div className="p-6">
-            <div className="text-[18px] font-semibold text-neutral-950">
-              joshua omobola
-            </div>
-            <p className="text-[14px] leading-[1.6] tracking-tight">
-              ships products for a living. nobody leaves the bootcamp without something they can demo. teaches it to a community of 80k+
-              across the us, uk, canada, australia and beyond. 
-            </p>
+              <div className="text-[18px] font-semibold text-neutral-950">
+                joshua omobola
+              </div>
+              <p className="text-[14px] leading-[1.6] tracking-tight">
+                ships products for a living. nobody leaves the bootcamp without
+                something they can demo. teaches it to a community of 80k+
+                across the us, uk, canada, australia and beyond.
+              </p>
             </div>
           </div>
         </div>
@@ -521,7 +534,10 @@ export default async function LaunchPage() {
             ready to join?
           </span>
           {isNigerianVisitor ? (
-            <CurrencyToggle currency={currency} setCurrency={setCurrencyAction} />
+            <CurrencyToggle
+              currency={currency}
+              setCurrency={setCurrencyAction}
+            />
           ) : null}
         </div>
         <h2 className="mb-6 text-[28px] font-semibold leading-[1.15] tracking-[-0.025em] text-neutral-950 sm:text-[34px]">
