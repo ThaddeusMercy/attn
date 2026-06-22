@@ -12,8 +12,8 @@ export const metadata: Metadata = {
 };
 
 const CHECKOUT_URL = "https://dub.sh/attn-bravo";
-const YT_VIDEO_ID = "8sLAYjYbBTg";
-const YT_WEBINAR_ID = "UxcXRuHBpdg";
+const YT_VIDEO_ID = "UxcXRuHBpdg";
+const YT_WEBINAR_ID = "8sLAYjYbBTg";
 
 const inside = [
   {
@@ -30,7 +30,7 @@ const inside = [
   },
   {
     title: "verified completion certificate",
-    body: "shareable on linkedin. publicly verifiable on verify.attentionfactory.io.",
+    body: "shareable on linkedin. publicly verifiable on fellows.attentionfactory.io.",
   },
 ];
 
@@ -82,7 +82,7 @@ const faq = [
   },
   {
     q: "what if i don't get a result?",
-    a: "show up, do the daily build. if you don't walk away with a live portfolio and a real ai project by friday, full refund. and we keep coaching you free until you do.",
+    a: "show up, do the daily build. if you don't walk away with a live portfolio and a real ai project by friday, full refund.",
   },
   {
     q: "how do i pay?",
@@ -115,7 +115,9 @@ export default async function LaunchPage() {
                   STARTS <span className="font-semibold">July 1st</span>
                 </span>
                 <span className="text-white/50">✦</span>
-                <span className="text-white">Doors close once the cohort fills</span>
+                <span className="text-white">
+                  Doors close once the cohort fills
+                </span>
                 <span className="text-white/50">✦</span>
               </div>
             ))}
@@ -157,31 +159,18 @@ export default async function LaunchPage() {
       {/* hero — pinned scroll-reveal headline */}
       <ScrollHero checkoutUrl={CHECKOUT_URL} currency={currency} />
 
-      {/* hero banner image */}
-      <section className="mx-auto w-full max-w-[900px] px-5 pt-12 sm:px-14">
-        <div className="overflow-hidden rounded-sm border border-neutral-200 bg-white">
-          <img
-            src="/proof/earning-in-ai.jpg"
-            alt="the guide to earn from ai opportunities — mercy + joshua"
-            className="h-auto w-full object-cover"
-          />
-        </div>
-      </section>
-
       {/* the framing — what this is */}
       <section className="mx-auto w-full max-w-[900px] px-5 pt-20 sm:px-14">
         <div className="mb-4 flex items-baseline gap-3 text-[12px] uppercase tracking-[0.18em] text-[#888]">
           <span className="text-[#0099ff]">what this is</span>
         </div>
         <h2 className="mb-6 text-[28px] font-semibold leading-[1.15] tracking-[-0.025em] text-neutral-950 sm:text-[36px]">
-          stop treating ai like a chatbot.
-          <span className="text-[#888]"> or something to postpone.</span>
+          In 7 Days, You'll Be Building With AI
         </h2>
         <div className="max-w-[760px] space-y-4 text-[16px] leading-[1.6] sm:text-[17px]">
           <p>
-            in 7 days, we walk you through ai content brands pay for, real ai
-            agents, and automations that run your work, your business, and your
-            life.
+            We walk you through ai content brands pay for, real ai agents, and
+            automations that run your work, your business, and your life.
           </p>
           <p>
             we use this every day at attention factory, and we build it for
@@ -200,9 +189,6 @@ export default async function LaunchPage() {
           >
             join bravo&apos;26 <span aria-hidden>&rarr;</span>
           </TrackedEnrollLink>
-          <p className="text-[13px] text-[#888]">
-            seats are limited &middot; cohort starts july 1
-          </p>
         </div>
       </section>
 
@@ -231,7 +217,7 @@ export default async function LaunchPage() {
       */}
 
       {/* webinar embed */}
-      <section className="mx-auto w-full max-w-[900px] px-5 pt-16 sm:px-14">
+      {/* <section className="mx-auto w-full max-w-[900px] px-5 pt-16 sm:px-14">
         <p className="mb-5 text-[20px] leading-[1.55] font-semibold">Watch the Webinar</p>
 
         <div className="mb-8 overflow-hidden rounded-sm border border-neutral-200 bg-black shadow-sm">
@@ -249,7 +235,7 @@ export default async function LaunchPage() {
             <span className="text-[#0099ff]">free to watch</span>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* who's in this room */}
       <section className="mx-auto w-full max-w-[900px] px-5 pt-24 sm:px-14">
@@ -257,13 +243,8 @@ export default async function LaunchPage() {
           <span className="text-[#0099ff]">who&apos;s in this room</span>
         </div>
         <h2 className="mb-3 text-[28px] font-semibold leading-[1.15] tracking-[-0.025em] text-neutral-950 sm:text-[34px]">
-          we&apos;re not training &ldquo;ai users.&rdquo; we&apos;re training
-          the people building the next wave.
+          You become part of the people building the next wave.
         </h2>
-        <p className="mb-8 max-w-[680px] text-[16px] leading-[1.55]">
-          find yourself in one of these? that&apos;s exactly who this is built
-          for.
-        </p>
         <div className="grid gap-3 sm:grid-cols-2">
           {[
             {
@@ -372,7 +353,7 @@ export default async function LaunchPage() {
             enroll now <span aria-hidden>&rarr;</span>
           </TrackedEnrollLink>
           <p className="mt-3 text-[12px]">
-            secure checkout via nestuge. full refund if you don&apos;t ship.
+            secure checkout via nestuge.
           </p>
         </div>
       </section>
@@ -454,11 +435,10 @@ export default async function LaunchPage() {
       {/* honesty check — is / isn't for you */}
       <section className="mx-auto w-full max-w-[900px] px-5 pt-24 sm:px-14">
         <div className="mb-3 flex items-baseline gap-3 text-[12px] uppercase tracking-[0.18em] text-[#888]">
-          <span className="text-[#0099ff]">honesty check</span>
           <span>before you enroll</span>
         </div>
         <h2 className="mb-8 text-[28px] font-semibold leading-[1.15] tracking-[-0.025em] text-neutral-950 sm:text-[34px]">
-          this is for some people. it&apos;s not for everyone.
+          This is not for Everyone.
         </h2>
         <div className="grid gap-6 sm:grid-cols-2">
           <div className="rounded-sm border border-neutral-200 bg-white p-6">
@@ -536,13 +516,10 @@ export default async function LaunchPage() {
             </ul>
           </div>
         </div>
-        <p className="mt-6 text-[14px]">
-          if you read the left column and felt seen, you&apos;re in the right
-          room.
-        </p>
       </section>
 
-      {/* price CTA — nestuge-style breakdown */}
+      {/* price CTA — nestuge-style breakdown. hidden for now. */}
+      {/*
       <section id="enroll" className="mx-auto w-full max-w-[700px] px-5 pt-24 sm:px-14">
         <div className="mb-3 flex items-center justify-between gap-3">
           <span className="text-[12px] uppercase tracking-[0.18em] text-[#0099ff]">
@@ -600,6 +577,7 @@ export default async function LaunchPage() {
           refund if you don&apos;t ship
         </p>
       </section>
+      */}
 
       {/* people are already asking — emails. commented out: replacing with a real-image carousel once mercy sends gpt-generated email screenshots. */}
       {/*
@@ -717,30 +695,29 @@ export default async function LaunchPage() {
       */}
 
       {/* guarantee — bold dark card */}
-      <section className="mx-auto w-full max-w-[700px] px-5 pt-24 sm:px-14">
-        <div className="mb-3 flex items-baseline gap-3 text-[12px] uppercase tracking-[0.18em] text-[#888]">
-          <span className="text-[#0099ff]">the guarantee</span>
-        </div>
-        <div className="rounded-sm bg-neutral-950 p-8 text-white sm:p-10">
-          <h3 className="mb-4 text-[26px] font-bold leading-[1.1] tracking-[-0.025em] sm:text-[34px]">
-            show up. ship something. or it&apos;s on us.
-          </h3>
-          <p className="text-[16px] leading-[1.65] text-neutral-300 sm:text-[17px]">
-            attend all five sessions. do the daily build. if by demo day you
-            don&apos;t walk away with a live portfolio site and a real ai
-            project, we refund every cent. and then we keep coaching you, free,
-            until you do.
-          </p>
+      <section className="mx-auto w-full bg-neutral-950 px-5 py-10 my-10 sm:px-14">
+        <div className="max-w-[700px] mx-auto">
+            <div className="rounded-sm  p-8 text-white sm:p-10">
+              <h3 className="mb-4 text-[26px] font-bold leading-[1.1] tracking-[-0.025em] sm:text-[34px]">
+                show up. ship something. or it&apos;s on us.
+              </h3>
+              <p className="text-[16px] leading-[1.65] text-neutral-300 sm:text-[17px]">
+                attend all five sessions. do the daily build. if by demo day you
+                don&apos;t walk away with a live portfolio site and a real ai
+                project, we refund every cent. and then we keep coaching you,
+                free, until you do.
+              </p>
+            </div>
         </div>
       </section>
 
       {/* faq */}
       <section className="mx-auto w-full max-w-[700px] px-5 pt-24 sm:px-14">
         <div className="mb-3 flex items-baseline gap-3 text-[12px] uppercase tracking-[0.18em] text-[#888]">
-          <span className="text-[#0099ff]">last questions</span>
+          <span className="text-[#0099ff]">FAQs</span>
         </div>
         <h2 className="mb-8 text-[28px] font-semibold leading-[1.15] tracking-[-0.025em] text-neutral-950 sm:text-[34px]">
-          before you enroll.
+          Frequently Asked Questions.
         </h2>
         <div className="divide-y divide-neutral-200 border-y border-neutral-200">
           {faq.map((f) => (
@@ -759,22 +736,12 @@ export default async function LaunchPage() {
 
       {/* final cta */}
       <section className="mx-auto w-full max-w-[700px] px-5 py-24 sm:px-14">
-        <div className="mb-3 flex items-baseline gap-3 text-[12px] uppercase tracking-[0.18em] text-[#888]">
-          <span className="text-[#0099ff]">last thing</span>
-        </div>
         <h2 className="mb-5 text-[32px] font-bold leading-[1.05] tracking-[-0.035em] text-neutral-950 sm:text-[44px]">
           you can keep saving ai tips.{" "}
           <span className="text-[#888]">or you can start building.</span>
         </h2>
-        <p className="mb-3 text-[16px] leading-[1.55]">
-          you already watched the playbook. you saw the fellows. the $750
-          dentist site, the furniture brand owner who rebuilt his whole
-          storefront in a week, the portfolios now landing real work.
-        </p>
         <p className="mb-8 text-[16px] leading-[1.55]">
-          seven days from now you&apos;ll either be the person other people come
-          to with ai questions, or the one still asking them. that&apos;s the
-          whole decision.
+          seven days from now you will either be the person buidling with AI or the person still asking questions.
         </p>
         <TrackedEnrollLink
           href={CHECKOUT_URL}
@@ -784,10 +751,6 @@ export default async function LaunchPage() {
         >
           enroll now <span aria-hidden>&rarr;</span>
         </TrackedEnrollLink>
-        <p className="mt-3 text-[13px]">
-          cohort starts july 1 &middot; first 10 get the mercy + joshua collab
-          &middot; full refund if you don&apos;t ship
-        </p>
       </section>
 
       {/* footer */}

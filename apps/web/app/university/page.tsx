@@ -264,9 +264,9 @@ export default async function UniversityPage() {
 
       {/* top nav */}
       <header className="mx-auto w-full max-w-[700px] px-5 pt-10 pb-6 sm:px-14 sm:pt-14">
-        <div className="text-[14px] text-neutral-950">
-          attention factory university
-        </div>
+        <h1 className="text-[38px] font-bold leading-[1.05] tracking-[-0.04em] text-neutral-950 sm:text-[50px]">
+          attention factory
+        </h1>
       </header>
 
       {/* hero */}
@@ -476,7 +476,7 @@ export default async function UniversityPage() {
           <li className="flex gap-3">
             <span className="text-[#0099ff]">→</span>
             <span className="text-neutral-950">
-              a <span className="font-semibold">verified certificate</span> on verify.attentionfactory.io — public, shareable, real.
+              a <span className="font-semibold">verified certificate</span> on fellows.attentionfactory.io — public, shareable, real.
             </span>
           </li>
           <li className="flex gap-3">
@@ -497,10 +497,10 @@ export default async function UniversityPage() {
         <p className="mb-8 text-[16px]">
           every fellow who completes the program and capstone receives a signed certificate of completion from attention factory. publicly verifiable on{" "}
           <a
-            href="https://verify.attentionfactory.io"
+            href="https://fellows.attentionfactory.io"
             className="text-[#0099ff] underline underline-offset-2"
           >
-            verify.attentionfactory.io
+            fellows.attentionfactory.io
           </a>
           . shareable on linkedin. real.
         </p>
@@ -591,7 +591,8 @@ export default async function UniversityPage() {
         </div>
       </section>
 
-      {/* the math — minimal price */}
+      {/* the math — minimal price (hidden for now) */}
+      {false && (
       <section id="enroll" className="mx-auto w-full max-w-[700px] px-5 pt-24 sm:px-14">
         <SectionLabel no="06" label="enroll" />
         <div className="rounded-sm border border-neutral-200 bg-white p-6 sm:p-8">
@@ -621,6 +622,7 @@ export default async function UniversityPage() {
           </p>
         </div>
       </section>
+      )}
 
       {/* fellow results — screenshot grid (hidden) */}
       {false && (
@@ -783,21 +785,7 @@ export default async function UniversityPage() {
           fellows are already inside, building. the curriculum is live. the tools are ready. the only variable left is whether you start july 1 &mdash; or watch another year of ai from the sidelines.
         </p>
         <div className="mb-6 rounded-sm border border-neutral-200 bg-white p-5">
-          <div className="grid gap-3 text-[14px] sm:grid-cols-3">
-            <div>
-              <div className="mb-1 text-[11px] uppercase tracking-[0.16em] text-[#888]">
-                one-time
-              </div>
-              <div className="text-[20px] font-semibold text-neutral-950">{price.full}</div>
-              <div className="text-[12px] text-[#888]">{price.fullNote}</div>
-            </div>
-            <div>
-              <div className="mb-1 text-[11px] uppercase tracking-[0.16em] text-[#888]">
-                spark plan
-              </div>
-              <div className="text-[20px] font-semibold text-neutral-950">{price.installment} × 2</div>
-              <div className="text-[12px] text-[#888]">pay in two parts</div>
-            </div>
+          <div className="grid gap-3 text-[14px]">
             <div>
               <div className="mb-1 text-[11px] uppercase tracking-[0.16em] text-[#888]">
                 cohort starts
@@ -918,8 +906,7 @@ export default async function UniversityPage() {
             <span>with or without you</span>
           </div>
           <h2 className="mb-5 text-[32px] font-bold leading-[1.05] tracking-[-0.035em] text-neutral-950 sm:text-[44px]">
-            the cohort is live. the tools are ready.{" "}
-            <span className="text-[#888]">the only variable left is you.</span>
+            the cohort is live. 
           </h2>
           <p className="mb-8 text-[16px] leading-[1.6]">
             every week without ai is a week your peers are pulling ahead with it. by next month, &ldquo;ai-fluent&rdquo; stops being a differentiator and starts being a baseline. you can be early to that line. or you can be late to it.

@@ -3,35 +3,6 @@
 import posthog from "posthog-js";
 import type { Currency } from "./currency";
 
-type Word = { text: string; accent?: boolean };
-
-const HEADLINE: Word[] = [
-  { text: "build" },
-  { text: "ai", accent: true },
-  { text: "skills", accent: true },
-  { text: "that" },
-  { text: "pay", accent: true },
-  { text: "you,", accent: true },
-  { text: "scale" },
-  { text: "your" },
-  { text: "business,", accent: true },
-  { text: "land" },
-  { text: "you" },
-  { text: "clients", accent: true },
-  { text: "and", accent: true },
-  { text: "jobs,", accent: true },
-  { text: "get" },
-  { text: "you" },
-  { text: "promoted,", accent: true },
-  { text: "and" },
-  { text: "run" },
-  { text: "your" },
-  { text: "life.", accent: true },
-];
-
-const COLOR_DARK = "#0a0a0a";
-const COLOR_BLUE = "#0099ff";
-
 export function ScrollHero({
   checkoutUrl,
   currency,
@@ -47,16 +18,9 @@ export function ScrollHero({
         <span className="text-neutral-950">starts july 1</span>
       </div>
 
-      <h1 className="mb-5 text-[40px] font-medium leading-[1.12] tracking-[-0.045em] sm:text-[60px]">
-        {HEADLINE.map((w, i) => (
-          <span
-            key={i}
-            className="mr-[0.22em] inline-block"
-            style={{ color: w.accent ? COLOR_BLUE : COLOR_DARK }}
-          >
-            {w.text}
-          </span>
-        ))}
+      <h1 className="mb-5 text-[40px] font-medium leading-[1.12] tracking-[-0.045em] text-[#0a0a0a] sm:text-[60px]">
+        build ai skills that pay you, scale your business, land you clients and
+        jobs, get you promoted, and run your life.
       </h1>
 
       <p className="mb-8 max-w-[720px] text-[17px] leading-[1.55] tracking-[-0.3px] text-[#888] sm:text-[19px]">
@@ -75,9 +39,6 @@ export function ScrollHero({
         >
           Become an AI Fellow <span aria-hidden>&rarr;</span>
         </a>
-        <p className="text-[13px] text-[#888] block">
-          *cohort starts july 1 &middot; full refund if you don&apos;t ship
-        </p>
       </div>
     </div>
   );
