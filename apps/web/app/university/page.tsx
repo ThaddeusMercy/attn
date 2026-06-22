@@ -476,7 +476,7 @@ export default async function UniversityPage() {
           <li className="flex gap-3">
             <span className="text-[#0099ff]">→</span>
             <span className="text-neutral-950">
-              a <span className="font-semibold">verified certificate</span> on verify.attentionfactory.io — public, shareable, real.
+              a <span className="font-semibold">verified certificate</span> on fellows.attentionfactory.io — public, shareable, real.
             </span>
           </li>
           <li className="flex gap-3">
@@ -497,10 +497,10 @@ export default async function UniversityPage() {
         <p className="mb-8 text-[16px]">
           every fellow who completes the program and capstone receives a signed certificate of completion from attention factory. publicly verifiable on{" "}
           <a
-            href="https://verify.attentionfactory.io"
+            href="https://fellows.attentionfactory.io"
             className="text-[#0099ff] underline underline-offset-2"
           >
-            verify.attentionfactory.io
+            fellows.attentionfactory.io
           </a>
           . shareable on linkedin. real.
         </p>
