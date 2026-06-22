@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { ScrollHero } from "./scroll-hero";
+import { CouponModal } from "./coupon-modal";
 import { getCurrencyContext, PRICING } from "./currency";
-import { setCurrencyAction } from "./currency-actions";
-import { CurrencyToggle } from "./currency-toggle";
 import { TrackedEnrollLink } from "./tracked-enroll-link";
 import { TrackedVideoPlayer } from "./tracked-video-player";
 
@@ -92,23 +91,38 @@ const faq = [
 ];
 
 export default async function LaunchPage() {
-  const { currency, isNigerianVisitor } = await getCurrencyContext();
+  const { currency } = await getCurrencyContext();
   const price = PRICING[currency];
 
   return (
     <main className="min-h-dvh bg-[#fefefe] text-[#888] font-mono">
+      <CouponModal checkoutUrl={CHECKOUT_URL} currency={currency} />
       {/* enrollment banner */}
       <div className="border-b border-neutral-200 bg-black text-white">
-        <div className="mx-auto flex w-full max-w-[900px] flex-wrap items-center justify-center gap-x-3 gap-y-1 px-5 py-2.5 text-center text-[12px] sm:px-14">
-          <span className="inline-flex items-center gap-2 text-[11px] uppercase font-medium text-white">
-            <span className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-white" />
-            Enrollment open
-          </span>{" "}
-          ✦
-          <span className="text-white">
-            STARTS <span className="font-semibold">July 1st</span>
-          </span>{" "}
-          ✦<span className="text-white">Doors close once the cohort fills</span>
+        <div className="enroll-marquee py-2.5 text-[11px] sm:text-[12px]">
+          <div className="enroll-marquee__track" aria-hidden>
+            {Array.from({ length: 6 }).map((_, group) => (
+              <div
+                key={group}
+                className="flex shrink-0 items-center gap-2.5 whitespace-nowrap pr-6 uppercase tracking-[0.02em] sm:gap-3 sm:pr-8"
+              >
+                <span className="inline-flex items-center gap-2 font-medium text-white">
+                  <span className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-white" />
+                  Enrollment open
+                </span>
+                <span className="text-white/50">✦</span>
+                <span className="text-white">
+                  STARTS <span className="font-semibold">July 1st</span>
+                </span>
+                <span className="text-white/50">✦</span>
+                <span className="text-white">Doors close once the cohort fills</span>
+                <span className="text-white/50">✦</span>
+              </div>
+            ))}
+          </div>
+          <span className="sr-only">
+            Enrollment open. Starts July 1st. Doors close once the cohort fills.
+          </span>
         </div>
       </div>
 
@@ -529,17 +543,11 @@ export default async function LaunchPage() {
       </section>
 
       {/* price CTA — nestuge-style breakdown */}
-      <section className="mx-auto w-full max-w-[700px] px-5 pt-24 sm:px-14">
+      <section id="enroll" className="mx-auto w-full max-w-[700px] px-5 pt-24 sm:px-14">
         <div className="mb-3 flex items-center justify-between gap-3">
           <span className="text-[12px] uppercase tracking-[0.18em] text-[#0099ff]">
             ready to join?
           </span>
-          {isNigerianVisitor ? (
-            <CurrencyToggle
-              currency={currency}
-              setCurrency={setCurrencyAction}
-            />
-          ) : null}
         </div>
         <h2 className="mb-6 text-[28px] font-semibold leading-[1.15] tracking-[-0.025em] text-neutral-950 sm:text-[34px]">
           One Accelerator.

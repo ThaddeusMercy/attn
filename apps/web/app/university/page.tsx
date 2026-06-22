@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
+import { CouponModal } from "../launch/coupon-modal";
 import { TrackedVideoPlayer } from "../launch/tracked-video-player";
 import {
   getCurrencyContext,
   PRICING,
   type Currency,
 } from "../launch/currency";
-import { setCurrencyAction } from "../launch/currency-actions";
-import { CurrencyToggle } from "../launch/currency-toggle";
 import { TrackedEnrollLink } from "../launch/tracked-enroll-link";
 
 const CHECKOUT_URL = "https://dub.sh/attn-bravo";
@@ -227,19 +226,39 @@ const CTAButton = ({
 };
 
 export default async function UniversityPage() {
-  const { currency, isNigerianVisitor } = await getCurrencyContext();
+  const { currency } = await getCurrencyContext();
   const price = PRICING[currency];
   const faq = buildFaq(price.full);
 
   return (
     <main className="min-h-dvh bg-[#fefefe] text-[#888] font-mono">
+      <CouponModal checkoutUrl={CHECKOUT_URL} currency={currency} />
       {/* urgency strip */}
       <div className="border-b border-neutral-200 bg-neutral-950 text-white">
-        <div className="mx-auto flex w-full max-w-[700px] items-center justify-center gap-2 px-5 py-2 text-center text-[11px] uppercase tracking-[0.16em] sm:px-14">
-          <span className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-[#0099ff]" />
-          <span>enrollment open</span>
-          <span className="text-neutral-500">&middot;</span>
-          <span className="text-neutral-300">doors close once the cohort fills</span>
+        <div className="enroll-marquee py-2 text-[11px] sm:text-[12px]">
+          <div className="enroll-marquee__track" aria-hidden>
+            {Array.from({ length: 6 }).map((_, group) => (
+              <div
+                key={group}
+                className="flex shrink-0 items-center gap-2.5 whitespace-nowrap pr-6 uppercase tracking-[0.16em] sm:gap-3 sm:pr-8"
+              >
+                <span className="inline-flex items-center gap-2 font-medium text-white">
+                  <span className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-[#0099ff]" />
+                  enrollment open
+                </span>
+                <span className="text-neutral-500">✦</span>
+                <span className="text-neutral-300">
+                  starts <span className="font-semibold text-white">july 1st</span>
+                </span>
+                <span className="text-neutral-500">✦</span>
+                <span className="text-neutral-300">doors close once the cohort fills</span>
+                <span className="text-neutral-500">✦</span>
+              </div>
+            ))}
+          </div>
+          <span className="sr-only">
+            Enrollment open. Starts July 1st. Doors close once the cohort fills.
+          </span>
         </div>
       </div>
 
@@ -580,12 +599,6 @@ export default async function UniversityPage() {
             <div className="text-[12px] uppercase tracking-[0.16em] text-[#888]">
               investment
             </div>
-            {isNigerianVisitor ? (
-              <CurrencyToggle
-                currency={currency}
-                setCurrency={setCurrencyAction}
-              />
-            ) : null}
           </div>
           <div className="mb-2 flex flex-wrap items-baseline gap-x-3 gap-y-1">
             <span className="text-[22px] font-medium tracking-[-0.02em] text-neutral-950 sm:text-[24px]">
