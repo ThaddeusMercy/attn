@@ -12,4 +12,5 @@ export async function setCurrencyAction(currency: Currency) {
     path: "/",
   });
   revalidatePath("/launch");
+  revalidatePath("/university");
 }

@@ -1,4 +1,15 @@
 import type { Metadata } from "next";
+import { TrackedVideoPlayer } from "../launch/tracked-video-player";
+import {
+  getCurrencyContext,
+  PRICING,
+  type Currency,
+} from "../launch/currency";
+import { setCurrencyAction } from "../launch/currency-actions";
+import { CurrencyToggle } from "../launch/currency-toggle";
+import { TrackedEnrollLink } from "../launch/tracked-enroll-link";
+
+const CHECKOUT_URL = "https://dub.sh/attn-bravo";
 
 export const metadata: Metadata = {
   title: "ai accelerator bootcamp — attention factory university",
@@ -81,12 +92,37 @@ const bonuses = [
   },
 ];
 
-const videos = [
-  { name: "amarachi", src: "/proof/amarachi.mp4", poster: "/proof/amarachi.jpg" },
-  { name: "sonia", src: "/proof/sonia.mp4", poster: "/proof/sonia.jpg" },
-  { name: "ogo", src: "/proof/ogo.mp4", poster: "/proof/ogo.jpg" },
-  { name: "henry", src: "/proof/henry.mp4", poster: "/proof/henry.jpg" },
-  { name: "maria", src: "/proof/maria.mp4", poster: "/proof/maria.jpg" },
+const proofVideos = [
+  {
+    name: "amarachi",
+    src: "/proof/amarachi.mp4",
+    poster: "/proof/amarachi.jpg",
+    quote: "",
+  },
+  {
+    name: "maria",
+    src: "/proof/maria.mp4",
+    poster: "/proof/maria.jpg",
+    quote: "",
+  },
+  {
+    name: "henry",
+    src: "/proof/henry.mp4",
+    poster: "/proof/henry.jpg",
+    quote: "",
+  },
+  {
+    name: "sonia",
+    src: "/proof/sonia.mp4",
+    poster: "/proof/sonia.jpg",
+    quote: "",
+  },
+  {
+    name: "ogochukwu",
+    src: "/proof/ogo.mp4",
+    poster: "/proof/ogo.jpg",
+    quote: "",
+  },
 ];
 
 const leverages = [
@@ -105,7 +141,7 @@ const failures = [
   "leading with the tools, not the outcome. nobody buys \"i use n8n.\" they buy \"i save you 30 hours a month.\"",
 ];
 
-const faq = [
+const buildFaq = (priceFull: string) => [
   {
     q: "i'm not technical. can i actually do this?",
     a: "yes. the last cohort had teachers, nurses, marketers, students, and parents — they all shipped. if you can use whatsapp and a browser, you're fine.",
@@ -124,7 +160,7 @@ const faq = [
   },
   {
     q: "will the price go up?",
-    a: "yes. as more fellows enroll and more results come in, the price moves up. the ₦150,000 you see today is not guaranteed for next week. lock it in now if you're in.",
+    a: `yes. as more fellows enroll and more results come in, the price moves up. the ${priceFull} you see today is not guaranteed for next week. lock it in now if you're in.`,
   },
   {
     q: "will this work where i live?",
@@ -132,7 +168,7 @@ const faq = [
   },
   {
     q: "what makes this different from every other ai course?",
-    a: "most courses end at \"now you know what chatgpt is.\" this one ends with you holding a live portfolio site, a working ai app, and a list of clients to pitch. for ₦150,000 — when agencies charge ₦1,500,000+ just to build the portfolio.",
+    a: `most courses end at "now you know what chatgpt is." this one ends with you holding a live portfolio site, a working ai app, and a list of clients to pitch. for ${priceFull} — when agencies charge ₦1,500,000+ just to build the portfolio.`,
   },
   {
     q: "what if i don't get the result?",
@@ -155,10 +191,16 @@ const CTAButton = ({
   label = "enroll now",
   variant = "primary",
   size = "lg",
+  source,
+  currency,
+  plan,
 }: {
   label?: string;
   variant?: "primary" | "ghost";
   size?: "lg" | "md";
+  source: string;
+  currency?: Currency;
+  plan?: "full" | "spark";
 }) => {
   const base =
     "inline-flex items-center gap-2 rounded-sm font-medium transition";
@@ -171,42 +213,24 @@ const CTAButton = ({
     ghost: "text-[#0099ff] underline underline-offset-4",
   };
   return (
-    <a
-      href="https://dub.sh/attn-bravo"
+    <TrackedEnrollLink
+      href={CHECKOUT_URL}
+      source={source}
+      plan={plan}
+      currency={currency}
       className={`${base} ${sizes[size]} ${variants[variant]}`}
     >
       {label}
       <span aria-hidden>&rarr;</span>
-    </a>
+    </TrackedEnrollLink>
   );
 };
 
-const VideoTile = ({
-  src,
-  poster,
-  name,
-}: {
-  src: string;
-  poster: string;
-  name: string;
-}) => (
-  <figure className="overflow-hidden rounded-sm border border-neutral-200 bg-black">
-    <video
-      controls
-      preload="metadata"
-      poster={poster}
-      className="aspect-square w-full object-cover"
-      playsInline
-    >
-      <source src={src} type="video/mp4" />
-    </video>
-    <figcaption className="bg-white px-3 py-2 text-[11px] uppercase tracking-[0.14em] text-[#888]">
-      {name} &middot; bravo&apos;25 fellow
-    </figcaption>
-  </figure>
-);
+export default async function UniversityPage() {
+  const { currency, isNigerianVisitor } = await getCurrencyContext();
+  const price = PRICING[currency];
+  const faq = buildFaq(price.full);
 
-export default function UniversityPage() {
   return (
     <main className="min-h-dvh bg-[#fefefe] text-[#888] font-mono">
       {/* urgency strip */}
@@ -249,26 +273,8 @@ export default function UniversityPage() {
           eight modules. five days. one demo day. zero filler.
         </p>
 
-        <div className="mb-8 rounded-sm border border-neutral-200 bg-white p-4">
-          <div className="mb-2 flex flex-wrap items-baseline gap-2 text-[12px] uppercase tracking-[0.16em] text-[#888]">
-            <span className="text-[#0099ff]">enrollment open</span>
-            <span className="text-neutral-300">&middot;</span>
-            <span>seats fill fast</span>
-          </div>
-          <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-            <span className="text-[22px] font-semibold tracking-[-0.02em] text-neutral-950 sm:text-[24px]">
-              ₦150,000
-            </span>
-            <span className="text-[13px] text-[#888]">(~$149)</span>
-            <span className="text-neutral-300">&middot;</span>
-            <span className="text-[13px] text-[#888]">
-              or pay in 2 parts of ₦80,000
-            </span>
-          </div>
-        </div>
-
-        <div className="flex flex-wrap items-center gap-3">
-          <CTAButton />
+        <div className="mt-8 flex flex-wrap items-center gap-3">
+          <CTAButton source="hero" currency={currency} />
           <a
             href="#curriculum"
             className="inline-flex items-center gap-2 px-1 py-3 text-[14px] text-[#0099ff] underline underline-offset-4"
@@ -277,35 +283,36 @@ export default function UniversityPage() {
           </a>
         </div>
 
-        <div className="mt-10 flex flex-wrap gap-x-6 gap-y-2 border-t border-neutral-200 pt-6 text-[13px]">
-          <span>
-            <span className="text-neutral-950">57</span> fellows in last cohort
-          </span>
-          <span className="text-neutral-300">&middot;</span>
-          <span>
-            taught by <span className="text-neutral-950">mercy + joshua</span>
-          </span>
-          <span className="text-neutral-300">&middot;</span>
-          <span>verified portfolio at end of week</span>
-        </div>
       </section>
 
-      {/* featured video */}
-      <section className="mx-auto w-full max-w-[700px] px-5 pt-20 sm:px-14">
+      {/* fellow videos — snap-scroll carousel (matches /launch) */}
+      <section className="mx-auto w-full max-w-[1100px] px-5 pt-20 sm:px-14">
         <SectionLabel no="" label="what fellows said" />
-        <div className="overflow-hidden rounded-sm border border-neutral-200 bg-black">
-          <video
-            controls
-            preload="metadata"
-            poster="/proof/amarachi.jpg"
-            className="aspect-video w-full object-cover"
-            playsInline
-          >
-            <source src="/proof/amarachi.mp4" type="video/mp4" />
-          </video>
-          <div className="bg-white px-4 py-3 text-[12px] uppercase tracking-[0.14em] text-[#888]">
-            amarachi &middot; bravo&apos;25 fellow
-          </div>
+        <div className="-mr-5 overflow-x-auto sm:-mr-14 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+          <ul className="flex snap-x snap-mandatory gap-4 pb-2 pr-5 sm:pr-14">
+            {proofVideos.map((v) => (
+              <li
+                key={v.name}
+                className="w-[88%] shrink-0 snap-start sm:w-[70%] lg:w-[58%]"
+              >
+                <figure>
+                  <div className="aspect-video overflow-hidden rounded-2xl bg-black">
+                    <TrackedVideoPlayer name={v.name} src={v.src} />
+                  </div>
+                  <figcaption className="mt-4">
+                    <div className="text-[14px] font-medium text-neutral-950">
+                      {v.name}
+                    </div>
+                    {v.quote ? (
+                      <p className="mt-1 text-[13px] leading-[1.55] text-[#888]">
+                        {v.quote}
+                      </p>
+                    ) : null}
+                  </figcaption>
+                </figure>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
@@ -569,27 +576,41 @@ export default function UniversityPage() {
       <section id="enroll" className="mx-auto w-full max-w-[700px] px-5 pt-24 sm:px-14">
         <SectionLabel no="06" label="enroll" />
         <div className="rounded-sm border border-neutral-200 bg-white p-6 sm:p-8">
-          <div className="mb-1 text-[12px] uppercase tracking-[0.16em] text-[#888]">
-            investment
+          <div className="mb-3 flex items-center justify-between gap-3">
+            <div className="text-[12px] uppercase tracking-[0.16em] text-[#888]">
+              investment
+            </div>
+            {isNigerianVisitor ? (
+              <CurrencyToggle
+                currency={currency}
+                setCurrency={setCurrencyAction}
+              />
+            ) : null}
           </div>
           <div className="mb-2 flex flex-wrap items-baseline gap-x-3 gap-y-1">
             <span className="text-[22px] font-medium tracking-[-0.02em] text-neutral-950 sm:text-[24px]">
-              ₦150,000
+              {price.full}
             </span>
-            <span className="text-[13px] text-[#888]">(~$149)</span>
+            <span className="text-[13px] text-[#888]">{price.fullNote}</span>
           </div>
           <p className="mb-6 text-[13px]">
-            or pay in two parts of <span className="text-neutral-950">₦80,000</span> on the spark plan.
+            or pay in two parts of <span className="text-neutral-950">{price.installment}</span> on the spark plan.
           </p>
 
-          <CTAButton label="enroll now" />
+          <CTAButton
+            label="enroll now"
+            source="enroll_card"
+            plan="full"
+            currency={currency}
+          />
           <p className="mt-3 text-[12px]">
             paystack &middot; selar &middot; card &middot; naira or dollars
           </p>
         </div>
       </section>
 
-      {/* fellow results — screenshot grid */}
+      {/* fellow results — screenshot grid (hidden) */}
+      {false && (
       <section className="mx-auto w-full max-w-[900px] px-5 pt-24 sm:px-14">
         <SectionLabel no="07" label="fellow results" />
         <h2 className="mb-3 text-[28px] font-semibold leading-[1.15] tracking-[-0.025em] text-neutral-950 sm:text-[34px]">
@@ -609,20 +630,46 @@ export default function UniversityPage() {
           ))}
         </div>
       </section>
+      )}
 
-      {/* proof — video grid */}
-      <section className="mx-auto w-full max-w-[900px] px-5 pt-24 sm:px-14">
-        <SectionLabel no="" label="fellow videos" />
-        <h2 className="mb-3 text-[28px] font-semibold leading-[1.15] tracking-[-0.025em] text-neutral-950 sm:text-[34px]">
-          fellows. unedited.
+      {/* proof — fellow videos, snap-scroll carousel (matches /launch) */}
+      <section className="mx-auto w-full max-w-[1100px] px-5 pt-24 sm:px-14">
+        <div className="mb-3 flex items-baseline gap-3 text-[12px] uppercase tracking-[0.18em] text-[#888]">
+          <span className="text-[#0099ff]">receipts</span>
+          <span>fellows in their own words</span>
+        </div>
+        <h2 className="mb-2 text-[28px] font-semibold leading-[1.15] tracking-[-0.025em] text-neutral-950 sm:text-[36px]">
+          people who showed up. real results.
         </h2>
-        <p className="mb-8 text-[15px]">
-          we didn&apos;t script these. press play.
+        <p className="mb-8 text-[14px]">
+          unedited. in their own words. press play on any of them.
         </p>
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
-          {videos.map((v) => (
-            <VideoTile key={v.name} src={v.src} poster={v.poster} name={v.name} />
-          ))}
+        {/* snap-scroll carousel; bleeds off the right edge so the next card peeks in */}
+        <div className="-mr-5 overflow-x-auto sm:-mr-14 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+          <ul className="flex snap-x snap-mandatory gap-4 pb-2 pr-5 sm:pr-14">
+            {proofVideos.map((v) => (
+              <li
+                key={v.name}
+                className="w-[88%] shrink-0 snap-start sm:w-[70%] lg:w-[58%]"
+              >
+                <figure>
+                  <div className="aspect-video overflow-hidden rounded-2xl bg-black">
+                    <TrackedVideoPlayer name={v.name} src={v.src} />
+                  </div>
+                  <figcaption className="mt-4">
+                    <div className="text-[14px] font-medium text-neutral-950">
+                      {v.name}
+                    </div>
+                    {v.quote ? (
+                      <p className="mt-1 text-[13px] leading-[1.55] text-[#888]">
+                        {v.quote}
+                      </p>
+                    ) : null}
+                  </figcaption>
+                </figure>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
@@ -642,49 +689,52 @@ export default function UniversityPage() {
         </div>
       </section>
 
-      {/* founders */}
+      {/* founders — who's teaching (matches /launch) */}
       <section className="mx-auto w-full max-w-[900px] px-5 pt-24 sm:px-14">
-        <SectionLabel no="09" label="who's teaching" />
-        <h2 className="mb-3 text-[28px] font-semibold leading-[1.15] tracking-[-0.025em] text-neutral-950 sm:text-[34px]">
-          mercy + joshua. building right alongside you.
+        <div className="mb-3 flex items-baseline gap-3 text-[12px] uppercase tracking-[0.18em] text-[#888]">
+          <span className="text-[#0099ff]">who&apos;s teaching</span>
+        </div>
+        <h2 className="mb-6 text-[28px] font-semibold leading-[1.15] tracking-[-0.025em] text-neutral-950 sm:text-[34px]">
+          mercy + joshua ⏤ building with you.
         </h2>
-        <p className="mb-8 text-[16px]">
-          attention factory is the company. attention factory university is where we teach what we use every day.
-        </p>
-
         <div className="grid gap-6 sm:grid-cols-2">
-          {/* Mercy */}
-          <div className="rounded-sm border border-neutral-200 bg-white p-6">
-            <div className="mb-5 aspect-square w-full overflow-hidden rounded-sm bg-neutral-100">
+          <div className="rounded-sm border border-neutral-200 bg-white">
+            <div className="aspect-4/5 w-full overflow-hidden bg-neutral-100">
               <img
                 src="/team/mercy.jpg"
                 alt="mercy thaddeus"
-                className="h-full w-full object-cover"
+                className="w-full object-contain"
               />
             </div>
-            <div className="mb-3 text-[18px] font-semibold text-neutral-950">
-              mercy thaddeus
+            <div className="p-6">
+              <div className="text-[18px] font-semibold text-neutral-950">
+                mercy thaddeus
+              </div>
+              <p className="text-[14px] leading-[1.6] tracking-tight">
+                builds with ai every day. teaches it to a community of 160k+
+                across the us, uk, canada, australia and beyond. runs the
+                curriculum and live sessions.
+              </p>
             </div>
-            <p className="text-[14px] leading-[1.6]">
-              builds with ai every day. teaches it to a community of 160k+ across the us, uk, canada, australia and beyond. runs the curriculum and live sessions &mdash; the same path that&apos;s put fellows on real projects and real payroll.
-            </p>
           </div>
-
-          {/* Joshua */}
-          <div className="rounded-sm border border-neutral-200 bg-white p-6">
-            <div className="mb-5 aspect-square w-full overflow-hidden rounded-sm bg-neutral-100">
+          <div className="rounded-sm border border-neutral-200 bg-white">
+            <div className="aspect-4/5 w-full overflow-hidden bg-neutral-100">
               <img
                 src="/team/joshua.jpg"
                 alt="joshua omobola"
-                className="h-full w-full object-cover"
+                className="w-full object-contain"
               />
             </div>
-            <div className="mb-3 text-[18px] font-semibold text-neutral-950">
-              joshua omobola
+            <div className="p-6">
+              <div className="text-[18px] font-semibold text-neutral-950">
+                joshua omobola
+              </div>
+              <p className="text-[14px] leading-[1.6] tracking-tight">
+                ships products for a living. nobody leaves the bootcamp without
+                something they can demo. teaches it to a community of 80k+
+                across the us, uk, canada, australia and beyond.
+              </p>
             </div>
-            <p className="text-[14px] leading-[1.6]">
-              ships products for a living. runs the build days &mdash; where you walk in with an idea and walk out with a working thing. nobody leaves the bootcamp without something they can demo.
-            </p>
           </div>
         </div>
       </section>
@@ -725,14 +775,14 @@ export default function UniversityPage() {
               <div className="mb-1 text-[11px] uppercase tracking-[0.16em] text-[#888]">
                 one-time
               </div>
-              <div className="text-[20px] font-semibold text-neutral-950">₦150,000</div>
-              <div className="text-[12px] text-[#888]">(~$149)</div>
+              <div className="text-[20px] font-semibold text-neutral-950">{price.full}</div>
+              <div className="text-[12px] text-[#888]">{price.fullNote}</div>
             </div>
             <div>
               <div className="mb-1 text-[11px] uppercase tracking-[0.16em] text-[#888]">
                 spark plan
               </div>
-              <div className="text-[20px] font-semibold text-neutral-950">₦80,000 × 2</div>
+              <div className="text-[20px] font-semibold text-neutral-950">{price.installment} × 2</div>
               <div className="text-[12px] text-[#888]">pay in two parts</div>
             </div>
             <div>
@@ -743,13 +793,18 @@ export default function UniversityPage() {
             </div>
           </div>
         </div>
-        <CTAButton label="enroll now" />
+        <CTAButton
+          label="enroll now"
+          source="final_cta"
+          currency={currency}
+        />
         <p className="mt-3 text-[13px]">
           first 10 get a collab with mercy &amp; joshua &middot; full refund if you don&apos;t ship
         </p>
       </section>
 
-      {/* free masterclass — lead magnet */}
+      {/* free masterclass — lead magnet (hidden) */}
+      {false && (
       <section className="border-t border-neutral-200 bg-[#fefefe] py-20">
         <div className="mx-auto w-full max-w-[900px] px-5 sm:px-14">
           <div className="mb-3 inline-flex items-center gap-2 rounded-sm bg-[#0099ff] px-2 py-[2px] text-[11px] uppercase tracking-[0.16em] text-white">
@@ -839,6 +894,7 @@ export default function UniversityPage() {
           </div>
         </div>
       </section>
+      )}
 
       {/* ai urgency closer */}
       <section className="border-t border-neutral-200 bg-[#fefefe]">
@@ -855,10 +911,37 @@ export default function UniversityPage() {
           <p className="mb-8 text-[16px] leading-[1.6]">
             every week without ai is a week your peers are pulling ahead with it. by next month, &ldquo;ai-fluent&rdquo; stops being a differentiator and starts being a baseline. you can be early to that line. or you can be late to it.
           </p>
-          <CTAButton label="enroll now" />
-          <p className="mt-3 text-[13px]">
-            cohort starts july 1 &middot; first 10 get the mercy + joshua collab &middot; full refund if you don&apos;t ship
-          </p>
+          <CTAButton
+            label="enroll now"
+            source="closer"
+            currency={currency}
+          />
+        </div>
+      </section>
+
+      {/* soft off-ramp — not ready to pay, join free whatsapp */}
+      <section className="border-t border-neutral-200 bg-white">
+        <div className="mx-auto w-full max-w-[700px] px-5 py-12 sm:px-14">
+          <div className="rounded-sm border border-neutral-200 bg-[#fefefe] p-5 sm:p-6">
+            <div className="mb-2 inline-flex items-center gap-2 rounded-sm bg-[#25D366]/10 px-2 py-[2px] text-[11px] uppercase tracking-[0.16em] text-[#1d8a4a]">
+              free &middot; no cost
+            </div>
+            <div className="mb-1 text-[16px] font-semibold text-neutral-950">
+              not ready to enroll yet?
+            </div>
+            <p className="mb-4 text-[14px] leading-[1.55]">
+              join our free whatsapp community. learn alongside fellows already building, see what the cohort is shipping, and decide when you&apos;re ready.
+            </p>
+            <a
+              href="https://dub.sh/attn-wa"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-sm border border-neutral-200 bg-white px-5 py-3 text-[14px] font-medium text-neutral-950 transition hover:border-neutral-300"
+            >
+              join the free whatsapp community
+              <span aria-hidden>&rarr;</span>
+            </a>
+          </div>
         </div>
       </section>
 
