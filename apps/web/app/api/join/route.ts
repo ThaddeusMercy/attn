@@ -5,7 +5,7 @@ const joinFormEndpoint =
   "https://jff-api.young-queen-5ffa.workers.dev/f/11686a11-a8b7-4ee6-92ec-894870d5dc62";
 
 export async function POST(request: Request) {
-  const { email, website } = await request.json();
+  const { email, name, source, website } = await request.json();
 
   if (website) {
     return NextResponse.json({ ok: true });
@@ -16,11 +16,18 @@ export async function POST(request: Request) {
   }
 
   const normalizedEmail = email.trim().toLowerCase();
+  const normalizedName =
+    typeof name === "string" && name.trim() ? name.trim() : undefined;
+  const normalizedSource =
+    typeof source === "string" && source.trim()
+      ? source.trim()
+      : "attentionfactory.io";
 
   const response = await fetch(joinFormEndpoint, {
     body: JSON.stringify({
       email: normalizedEmail,
-      source: "attentionfactory.io",
+      ...(normalizedName ? { name: normalizedName } : {}),
+      source: normalizedSource,
     }),
     headers: {
       "Content-Type": "application/json",
